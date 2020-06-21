@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+
+import { MaterialModule } from './material.module';
+
 import { AppComponent } from './app/components/app-component/app.component';
 import { FooterComponent } from './app/components/footer/footer.component';
 import { NavigationComponent } from './app/components/navigation/navigation.component';
@@ -23,6 +26,7 @@ import { TaskEditComponent } from './app/components/task-edit/task-edit.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
