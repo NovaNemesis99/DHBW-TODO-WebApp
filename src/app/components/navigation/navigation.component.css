@@ -3,10 +3,14 @@ div {
     padding: 10px;
     color: white;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
 }
 
 a {
     margin-right: 10px;
+    text-decoration: none;
+    color: black;
 }
 
 a:last-of-type {
