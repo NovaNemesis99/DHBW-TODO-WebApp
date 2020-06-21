@@ -1,6 +1,14 @@
 div {
     background-color: gray;
-    padding: 20px;
+    padding: 10px;
     color: white;
     margin-bottom: 10px;
+}
+
+a {
+    margin-right: 10px;
+}
+
+a:last-of-type {
+    margin: 0;
 }
