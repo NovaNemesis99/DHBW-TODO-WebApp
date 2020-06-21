@@ -26,7 +26,7 @@ import { TaskEditComponent } from './app/components/task-edit/task-edit.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

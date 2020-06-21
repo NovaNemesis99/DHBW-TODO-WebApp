@@ -35,8 +35,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
-  imports: [
+  imports: [CommonModule],
+  exports: [
     CommonModule,
+    BrowserAnimationsModule,
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,
