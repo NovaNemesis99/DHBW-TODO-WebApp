@@ -1,16 +1,113 @@
 import { Action } from '@ngrx/store';
-
-//sample model
 import { Task } from '../shared/models/task';
+import { Tasklist } from '../shared/models/tasklist';
 
-//sample action
-export const SAMPLE_ACTION = "[Action] SampleAction";
+//#region Task
+export const GET_TASK_BY_ID = "[Task] GetTaskById";
 
-export class SampleAction implements Action {
-    readonly type = SAMPLE_ACTION;
+export class GetTaskById implements Action {
+    readonly type = GET_TASK_BY_ID;
 
-    constructor(public payload: Task) {}
+    constructor(public payload: number) { }
 }
-//end sample
 
-export type TodoActions = SampleAction;
+export const RECEIVED_TASK = "[Task] ReceivedTask";
+
+export class ReceivedTask implements Action {
+    readonly type = RECEIVED_TASK;
+
+    constructor(public payload: Task) { }
+}
+
+export const GET_TASKS_OF_LIST = "[Task] GetTasksOfList";
+
+export class GetTasksOfList implements Action {
+    readonly type = GET_TASKS_OF_LIST;
+
+    constructor(public payload: number) { }
+}
+
+export const RECEIVED_TASKS_OF_LIST = "[Task] ReceivedTasksOfList";
+
+export class ReceivedTasksOfList implements Action {
+    readonly type = RECEIVED_TASKS_OF_LIST;
+
+    constructor(public payload: Task[]) { }
+}
+
+export const ADD_OR_UPDATE_TASK = "[Task] AddOrUpdateTask";
+
+export class AddOrUpdateTask implements Action {
+    readonly type = ADD_OR_UPDATE_TASK;
+
+    constructor(public payload: Task) { }
+}
+
+export const CHANGED_TASK = "[Task] ChangedTask";
+
+export class ChangedTask implements Action {
+    readonly type = CHANGED_TASK;
+}
+//#endregion Task
+
+//#region Tasklist
+export const GET_LIST_BY_ID = "[Tasklist] GetListById";
+
+export class GetListById implements Action {
+    readonly type = GET_LIST_BY_ID;
+
+    constructor(public payload: number) { }
+}
+
+export const RECEIVED_LIST_BY_ID = "[Tasklist] ReceivedListById";
+
+export class ReceivedListById implements Action {
+    readonly type = RECEIVED_LIST_BY_ID;
+
+    constructor(public payload: Tasklist[]) { }
+}
+
+export const GET_ALL_LISTS = "[Tasklist] GetAllLists";
+
+export class GetAllLists implements Action {
+    readonly type = GET_ALL_LISTS;
+}
+
+export const RECEIVED_ALL_LISTS = "[Tasklist] ReceivedAllLists";
+
+export class ReceivedAllLists implements Action {
+    readonly type = RECEIVED_ALL_LISTS;
+
+    constructor(public payload: Tasklist[]) { }
+}
+
+export const ADD_OR_UPDATE_LIST = "[Tasklist] AddOrUpdateList";
+
+export class AddOrUpdateList implements Action {
+    readonly type = ADD_OR_UPDATE_LIST;
+
+    constructor(public payload: Tasklist) { }
+}
+
+export const CHANGED_LIST = "[Tasklist] ChangedList";
+
+export class ChangedList implements Action {
+    readonly type = CHANGED_LIST;
+}
+
+export const DELETE_LIST = "[Tasklist] DeleteList";
+
+export class DeleteList implements Action {
+    readonly type = DELETE_LIST;
+
+    constructor(public payload: number) {}
+}
+
+export const DELETED_LIST = "[Tasklist] DeletedList";
+
+export class DeletedList implements Action {
+    readonly type = DELETED_LIST;
+}
+
+export type TodoActions = GetTaskById | ReceivedTask | GetTasksOfList | ReceivedTasksOfList | AddOrUpdateTask | ChangedTask |
+    GetListById | ReceivedListById | GetAllLists | ReceivedAllLists | AddOrUpdateList | ChangedList | DeleteList | DeletedList;
