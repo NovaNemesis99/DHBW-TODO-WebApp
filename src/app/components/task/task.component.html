@@ -1,1 +1,3 @@
-<p>task works!</p>
+<ng-container *ngFor="let element of ((task$ | async) | keyvalue)">
+    {{element.key}}: {{element.value}} <br>
+</ng-container>

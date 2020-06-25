@@ -15,7 +15,8 @@ export const initialStateTask: TaskState = {
         duedate: '',
         description: '',
         weight: null,
-        state: null
+        state: null,
+        list_id: null
     }],
     isLoading: false
 }

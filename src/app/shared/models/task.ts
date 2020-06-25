@@ -5,4 +5,5 @@ export interface Task {
     description: String;
     weight: number;
     state: number;
+    list_id: number;
 }
