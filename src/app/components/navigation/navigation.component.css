@@ -1,10 +1,9 @@
-div {
-    background-color: gray;
-    padding: 10px;
-    color: white;
+mat-toolbar {
     margin-bottom: 10px;
+}
+
+span {
     display: flex;
-    align-items: center;
 }
 
 a {
