@@ -12,31 +12,31 @@ export class TodoService {
     constructor(private http: HttpClient) { }
 
     getTaskById(id) {
-      return this.http.get<Task[]>('http://localhost:8080/getTask/' + id).pipe(catchError(this.handleError.bind(this)));
+      return this.http.get<Task[]>('http://localhost/dhbw-dbek-todo-core-dev/public/index.php/getTask/' + id).pipe(catchError(this.handleError.bind(this)));
     }
 
     getTasksOfList(id) {
-      return this.http.get<Task[]>('http://localhost:8080/getTasksOfList/' + id).pipe(catchError(this.handleError.bind(this)));
+      return this.http.get<Task[]>('http://localhost/dhbw-dbek-todo-core-dev/public/index.php/getTasksOfList/' + id).pipe(catchError(this.handleError.bind(this)));
     }
 
     addOrUpdateTask(task) {
-      return this.http.post('http://localhost:8080/addOrUpdateTask/', task).pipe(catchError(this.handleError.bind(this)));
+      return this.http.post('http://localhost/dhbw-dbek-todo-core-dev/public/index.php/addOrUpdateTask/', task).pipe(catchError(this.handleError.bind(this)));
     }
 
     getListById(id) {
-      return this.http.get<Tasklist[]>('http://localhost:8080/getList/' + id).pipe(catchError(this.handleError.bind(this)));
+      return this.http.get<Tasklist[]>('http://localhost/dhbw-dbek-todo-core-dev/public/index.php/getList/' + id).pipe(catchError(this.handleError.bind(this)));
     }
 
     getAllLists() {
-      return this.http.get<Tasklist[]>('http://localhost:8080/getAllLists').pipe(catchError(this.handleError.bind(this)));
+      return this.http.get<Tasklist[]>('http://localhost/dhbw-dbek-todo-core-dev/public/index.php/getAllLists').pipe(catchError(this.handleError.bind(this)));
     }
 
     addOrUpdateList(list) {
-      return this.http.post('http://localhost:8080/addOrUpdateList/', list).pipe(catchError(this.handleError.bind(this)));
+      return this.http.post('http://localhost/dhbw-dbek-todo-core-dev/public/index.php/addOrUpdateList/', list).pipe(catchError(this.handleError.bind(this)));
     }
 
     deleteList(id) {
-      return this.http.delete('http://localhost:8080/deleteList' + id).pipe(catchError(this.handleError.bind(this)));
+      return this.http.delete('http://localhost/dhbw-dbek-todo-core-dev/public/index.php/deleteList' + id).pipe(catchError(this.handleError.bind(this)));
     }
 
     handleError(error: HttpErrorResponse) {
