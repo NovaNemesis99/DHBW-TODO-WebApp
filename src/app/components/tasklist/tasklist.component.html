@@ -1,1 +1,19 @@
-<p>tasklist works!</p>
+<h1><u>Ihre Aufgabenlisten</u></h1>
+<p>Unten finden Sie alle Aufgabenlisten. Durch aufklappen werden die dazugehörigen Aufgaben angezeigt.</p>
+
+<mat-accordion>
+    <ng-container *ngFor="let tasklist of (tasklists$ | async)">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                {{tasklist.name}}
+            </mat-expansion-panel-header>
+            <mat-panel-description>
+                <ul>
+                    <ng-container *ngFor="let task of tasklist.ownTask">
+                        <li>{{task.name}} | {{task.duedate}}</li>
+                    </ng-container>
+                </ul>
+            </mat-panel-description>
+        </mat-expansion-panel>
+    </ng-container>
+</mat-accordion>
