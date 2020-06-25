@@ -10,7 +10,7 @@
             <mat-panel-description>
                 <ul>
                     <ng-container *ngFor="let task of tasklist.ownTask">
-                        <li>{{task.name}} | {{task.duedate}}</li>
+                        <li><a routerLink="/task" fragment="{{task.id}}">{{task.name}} | {{task.duedate}}</a></li>
                     </ng-container>
                 </ul>
             </mat-panel-description>

@@ -1,3 +1,7 @@
 <ng-container *ngFor="let element of ((task$ | async) | keyvalue)">
-    {{element.key}}: {{element.value}} <br>
+    <ng-container *ngIf="!(element.key == 'id' && element.value == 0); else elseBlock">
+        {{element.key}}: {{element.value}} <br>
+    </ng-container>
 </ng-container>
+
+<ng-template #elseBlock>Die aufgerufene Aufgabe konnte nicht gefunden werden.</ng-template>
