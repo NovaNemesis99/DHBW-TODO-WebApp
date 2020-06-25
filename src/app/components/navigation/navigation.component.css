@@ -2,10 +2,6 @@ mat-toolbar {
     margin-bottom: 10px;
 }
 
-span {
-    display: flex;
-}
-
 a {
     margin-right: 10px;
     text-decoration: none;
