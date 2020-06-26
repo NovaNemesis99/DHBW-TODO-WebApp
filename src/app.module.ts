@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -20,6 +21,8 @@ import { TaskComponent } from './app/components/task/task.component';
 import { TaskEditComponent } from './app/components/task-edit/task-edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TasklistDetailComponent } from './app/components/tasklist-detail/tasklist-detail.component';
+import { AddTaskComponent } from './app/components/add-task/add-task.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -30,12 +33,14 @@ import { TasklistDetailComponent } from './app/components/tasklist-detail/taskli
     TaskComponent,
     TaskEditComponent,
     MainComponent,
-    TasklistDetailComponent
+    TasklistDetailComponent,
+    AddTaskComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
     MaterialModule,
     StoreModule.forRoot({
       task: fromTodoReducers.TaskReducer, tasklist: fromTodoReducers.TasklistReducer
@@ -43,7 +48,10 @@ import { TasklistDetailComponent } from './app/components/tasklist-detail/taskli
     StoreDevtoolsModule.instrument({}),
     EffectsModule.forRoot([TaskEffects, TasklistEffects])
   ],
-  providers: [],
+  entryComponents: [AddTaskComponent],
+  providers: [{
+    provide: MAT_DATE_LOCALE, useValue: 'de-DE'
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
