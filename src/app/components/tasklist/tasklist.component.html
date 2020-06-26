@@ -5,7 +5,7 @@
     <ng-container *ngFor="let tasklist of (tasklists$ | async)">
         <mat-expansion-panel>
             <mat-expansion-panel-header>
-                {{tasklist.name}}
+                <div>{{tasklist.name}}&nbsp;<a routerLink="/specificTasklist" fragment="{{tasklist.id}}"><button mat-raised-button color="accent">Detailansicht <i class="material-icons">arrow_right_alt</i></button></a></div>
             </mat-expansion-panel-header>
             <mat-panel-description>
                 <ul>

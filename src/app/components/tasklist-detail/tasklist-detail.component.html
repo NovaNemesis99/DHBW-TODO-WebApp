@@ -1,0 +1,12 @@
+<ng-container *ngFor="let element of ((tasklist$ |async) | keyvalue)">
+    <ng-container *ngIf="!(element.key == 'ownTask')">
+        {{element.key}}: {{element.value}} <br>
+    </ng-container>
+    <ng-container *ngIf="element.key == 'ownTask'">
+        <ng-container *ngFor="let task of element.value | keyvalue">
+            <ng-container *ngFor="let attributes of task.value | keyvalue">
+                {{attributes.key}}: {{attributes.value}} <br>
+            </ng-container><br>
+        </ng-container>
+    </ng-container><br>
+</ng-container>
