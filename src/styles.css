@@ -2,5 +2,6 @@
 
 body { 
     margin: 0; 
+    margin-bottom: 15px;
     font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
