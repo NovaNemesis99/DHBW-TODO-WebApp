@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Neue Aufgabe hinzufügen:</h1>
+
+<div mat-dialog-content>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Aufgabenname</mat-label>
+        <input matInput placeholder="Neue Aufgabe" [(ngModel)]="addTask.name">
+    </mat-form-field><br>
+    <mat-form-field appearance="outline">
+        <mat-label>Enddatum</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="addTask.duedate" disabled>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
+    </mat-form-field><br>
+    <mat-form-field appearance="outline">
+        <mat-label>Beschreibung</mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" [(ngModel)]="addTask.description"></textarea>
+    </mat-form-field><br>
+    <mat-form-field appearance="outline">
+        <mat-label>Gewichtung</mat-label>
+        <input matInput [(ngModel)]="addTask.weight">
+    </mat-form-field><br>
+
+    DueDate: {{addTask.duedate}}<br>
+    Description: {{addTask.description}}<br>
+    Weight: {{addTask.weight}}<br>
+    State: {{addTask.state}}<br>
+    List ID: {{addTask.list_id}}<br>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close color="warn">Schließen</button>
+    <button mat-raised-button color="accent">Hinzufügen</button>
+</div>
