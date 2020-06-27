@@ -3,6 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Task } from 'src/app/shared/models/task';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { take } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import * as TodoActions from '../../store/todo.actions';
 
 @Component({
   selector: 'app-add-task',
@@ -21,7 +23,7 @@ export class AddTaskComponent implements OnInit {
     list_id: null
   }
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: number, public dialogRef: MatDialogRef<AddTaskComponent>, private _ngZone: NgZone) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: number, public dialogRef: MatDialogRef<AddTaskComponent>, private _ngZone: NgZone, private store: Store) { }
 
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
 
@@ -37,4 +39,8 @@ export class AddTaskComponent implements OnInit {
     this._ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
+  submitTask() {
+    this.store.dispatch(new TodoActions.AddOrUpdateTask(this.addTask));
+    this.closeDialog();
+  }
 }
