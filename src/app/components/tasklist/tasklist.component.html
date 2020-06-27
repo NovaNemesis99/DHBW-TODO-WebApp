@@ -1,16 +1,17 @@
 <h1><u>Ihre Aufgabenlisten</u></h1>
-<p>Unten finden Sie alle Aufgabenlisten. Durch aufklappen werden die dazugehörigen Aufgaben angezeigt.</p>
+<p>Unten finden Sie alle Aufgabenlisten. Durch aufklappen wird eine gekürzte Ansicht der dazugehörigen Aufgaben angezeigt.</p>
 
 <mat-accordion>
     <ng-container *ngFor="let tasklist of (tasklists$ | async)">
         <mat-expansion-panel>
             <mat-expansion-panel-header>
-                <div>{{tasklist.name}}&nbsp;<a routerLink="/specificTasklist" fragment="{{tasklist.id}}"><button mat-raised-button color="accent">Detailansicht <i class="material-icons">arrow_right_alt</i></button></a></div>
+                <div>{{tasklist.name}}&nbsp;&nbsp;<a routerLink="/specificTasklist" fragment="{{tasklist.id}}"><button mat-raised-button color="accent">Detailansicht <i class="material-icons">arrow_right_alt</i></button></a></div>
             </mat-expansion-panel-header>
             <mat-panel-description>
                 <ul>
                     <ng-container *ngFor="let task of tasklist.ownTask">
-                        <li><a routerLink="/task" fragment="{{task.id}}">{{task.name}} | {{task.duedate}}</a></li>
+                        <li>{{task.name}} | {{task.duedate}}&nbsp;&nbsp;<a routerLink="/task" fragment="{{task.id}}"><span>Details <i class="material-icons">arrow_right_alt</i></span></a></li>
+                        <br>
                     </ng-container>
                 </ul>
             </mat-panel-description>

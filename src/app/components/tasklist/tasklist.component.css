@@ -2,3 +2,13 @@ div {
     display: flex;
     align-items: center;
 }
+
+span {
+    display: flex;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
