@@ -2,15 +2,30 @@
     <ng-container *ngIf="!(element.key == 'ownTask' || element.key == 'id')">
         <h1><u>Aufgabenliste "{{element.value}}"</u></h1>
     </ng-container>
-    <ng-container *ngIf="element.key == 'ownTask'">
+    <!--<ng-container *ngIf="element.key == 'ownTask'">
         <ng-container *ngFor="let task of element.value | keyvalue">
             <ng-container *ngFor="let attributes of task.value | keyvalue">
                 {{attributes.key}}: {{attributes.value}} <br>
             </ng-container>
             <button mat-raised-button color="accent" disabled>Aufgabe bearbeiten</button><br><br>
         </ng-container>
-    </ng-container><br>
+    </ng-container><br>-->
 </ng-container>
+<ng-container *ngFor="let attribute of this.placeholder.tasklist | keyvalue">
+    <ng-container *ngIf="attribute.key == 'ownTask'">
+        <ng-container *ngFor="let task of attribute.value">
+            <h3>Aufgabenname: {{task.name}}</h3>
+            <div id="taskContainer">
+                Fällig bis: {{task.duedate}}<br>
+                Beschreibung:  {{task.description}}<br>
+                Gewichtung: {{task.weight}}<br>
+                Status: {{task.state}}<br>
+            </div>
+            <button mat-raised-button color="accent" disabled>Aufgabe bearbeiten</button><br><br>
+            <mat-divider></mat-divider>
+        </ng-container>
+    </ng-container>
+</ng-container><br><br>
 
 <button mat-fab color="primary" (click)="openDialog()"><i class="material-icons">add</i></button>
 <br>

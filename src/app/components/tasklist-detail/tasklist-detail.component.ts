@@ -17,19 +17,25 @@ export class TasklistDetailComponent implements OnInit {
 
   private id: number;
   tasklist$: Observable<Tasklist[]>;
+  placeholder =  {
+    tasklist: []
+  };
+  tasklist: [] = [];
   isLoading$: Observable<boolean>;
 
   constructor(private active: ActivatedRoute, private store: Store, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
-    this.active.fragment.subscribe((fragment: string) => this.getTasklist(fragment));  
+    this.active.fragment.subscribe((fragment: string) => this.getTasklist(fragment));
   }
 
   getTasklist(fragment) {
     this.id = fragment;
     this.store.dispatch(new TodoActions.GetListById(this.id));
     this.tasklist$ = this.store.select(TodoSelectors.selectTasklist);
-    console.log(this.tasklist$);
+    this.tasklist$.subscribe((tasklist) => {
+      this.placeholder.tasklist = tasklist;
+    });
   }
 
   openDialog() {
@@ -45,7 +51,7 @@ export class TasklistDetailComponent implements OnInit {
   }
 
   deleteList() {
-    if(window.confirm("Liste wirklich löschen?")) {
+    if (window.confirm("Liste wirklich löschen?")) {
       this.store.dispatch(new TodoActions.DeleteList(this.id));
     }
     this.router.navigate(["/tasklist"]);
