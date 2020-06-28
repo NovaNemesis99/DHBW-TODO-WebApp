@@ -5,3 +5,7 @@ body {
     margin-bottom: 70px;
     font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
+
+.mat-form-field-flex {
+    align-items: center !important;
+}

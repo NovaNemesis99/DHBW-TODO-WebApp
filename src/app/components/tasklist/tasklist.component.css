@@ -12,3 +12,7 @@ a {
     text-decoration: none;
     color: white;
 }
+
+mat-form-field {
+    width: 40%;
+}

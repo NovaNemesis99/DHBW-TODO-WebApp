@@ -16,6 +16,20 @@ export class TasklistComponent implements OnInit {
   tasklists$: Observable<Tasklist[]>;
   isLoading$: Observable<boolean>;
 
+  tasklistName: String = "";
+
+  newTasklist: {
+    id: number,
+    name: String,
+    Tasks: []
+  } = {
+    id: null,
+    name: '',
+    Tasks: []
+  };
+  
+  isEmpty: boolean = false;
+
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
@@ -23,4 +37,14 @@ export class TasklistComponent implements OnInit {
     this.tasklists$ = this.store.select(TodoSelectors.selectTasklist);
   }
 
+  addTasklist() {
+    if (this.tasklistName != '') {
+      this.newTasklist.name = this.tasklistName;
+      this.store.dispatch(new TodoActions.AddOrUpdateList(this.newTasklist));
+      this.isEmpty = false;
+      this.tasklistName = '';
+    } else {
+      this.isEmpty = true;
+    }
+  }
 }
