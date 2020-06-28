@@ -16,10 +16,62 @@
         <ng-container *ngFor="let task of attribute.value">
             <h3>Aufgabenname: {{task.name}}</h3>
             <div id="taskContainer">
-                Fällig bis: {{task.duedate}}<br>
-                Beschreibung:  {{task.description}}<br>
-                Gewichtung: {{task.weight}}<br>
-                Status: {{task.state}}<br>
+                <table>
+                    <tr>
+                        <td>
+                            Fällig bis:
+                        </td>
+                        <td>
+                            {{task.duedate}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Beschreibung:&nbsp;
+                        </td>
+                        <td>
+                            {{task.description}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Gewichtung:
+                        </td>
+                        <td>
+                            <ng-container *ngIf="task.weight == 1">
+                                unwichtig
+                            </ng-container>
+                            <ng-container *ngIf="task.weight == 2">
+                                eher unwichtig
+                            </ng-container>
+                            <ng-container *ngIf="task.weight == 3">
+                                durchschnittlich
+                            </ng-container>
+                            <ng-container *ngIf="task.weight == 4">
+                                wichtig
+                            </ng-container>
+                            <ng-container *ngIf="task.weight == 5">
+                                sehr wichtig
+                            </ng-container>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Status:
+                        </td>
+                        <td>
+                            <ng-container *ngIf="task.state == 0">
+                                <span id="open">offen</span>
+                            </ng-container>
+                            <ng-container *ngIf="task.state == 1">
+                                <span id="working">in Bearbeitung</span>
+                            </ng-container>
+                            <ng-container *ngIf="task.weight == 2">
+                                <span id="done">erledigt</span>
+                            </ng-container>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <button mat-raised-button color="accent" disabled>Aufgabe bearbeiten</button><br><br>
             <mat-divider></mat-divider>
