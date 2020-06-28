@@ -13,3 +13,7 @@ h1 {
 #done {
     color: green;
 }
+
+#delete {
+    margin-left: 20px;
+}
