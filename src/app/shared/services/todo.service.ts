@@ -20,7 +20,7 @@ export class TodoService {
     }
 
     addOrUpdateTask(task) {
-      return this.http.post('http://localhost/dhbw-dbek-todo-core-dev/public/index.php/addOrUpdateTask/', task).pipe(catchError(this.handleError.bind(this)));
+      return this.http.post('http://localhost/dhbw-dbek-todo-core-dev/public/index.php/addOrUpdateTask', task).pipe(catchError(this.handleError.bind(this)));
     }
 
     deleteTask(id) {
@@ -36,7 +36,7 @@ export class TodoService {
     }
 
     addOrUpdateList(list) {
-      return this.http.post('http://localhost/dhbw-dbek-todo-core-dev/public/index.php/addOrUpdateList/', list).pipe(catchError(this.handleError.bind(this)));
+      return this.http.post('http://localhost/dhbw-dbek-todo-core-dev/public/index.php/addOrUpdateList', list).pipe(catchError(this.handleError.bind(this)));
     }
 
     deleteList(id) {

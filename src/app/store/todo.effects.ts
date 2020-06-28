@@ -40,8 +40,7 @@ export class TaskEffects {
             return this.TodoService.addOrUpdateTask(action.payload);
         }), mergeMap(result => {
             return [
-                new TodoActions.ChangedTask,
-                new TodoActions.GetAllLists
+                new TodoActions.ChangedTask
             ]
         })
     );
