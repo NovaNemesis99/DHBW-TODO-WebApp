@@ -46,6 +46,19 @@ export class TaskEffects {
         })
     );
 
+    @Effect() DeleteTask = this.actions$.pipe(
+        ofType(TodoActions.DELETE_TASK),
+        map(action => <TodoActions.DeleteTask>action),
+        switchMap(action => {
+            return this.TodoService.deleteTask(action.payload);
+        }), mergeMap(result => {
+            return [
+                new TodoActions.DeletedTask,
+                new TodoActions.GetAllLists
+            ]
+        })
+    );
+
     constructor(
         private actions$: Actions,
         private TodoService: TodoService

@@ -48,6 +48,20 @@ export const CHANGED_TASK = "[Task] ChangedTask";
 export class ChangedTask implements Action {
     readonly type = CHANGED_TASK;
 }
+
+export const DELETE_TASK = "[Task] DeleteTask";
+
+export class DeleteTask implements Action {
+    readonly type = DELETE_TASK;
+
+    constructor(public payload: number) {}
+}
+
+export const DELETED_TASK = "[Task] DeletedTask";
+
+export class DeletedTask implements Action {
+    readonly type = DELETED_TASK;
+}
 //#endregion Task
 
 //#region Tasklist
@@ -109,5 +123,5 @@ export class DeletedList implements Action {
     readonly type = DELETED_LIST;
 }
 
-export type TodoActions = GetTaskById | ReceivedTask | GetTasksOfList | ReceivedTasksOfList | AddOrUpdateTask | ChangedTask |
+export type TodoActions = GetTaskById | ReceivedTask | GetTasksOfList | ReceivedTasksOfList | AddOrUpdateTask | ChangedTask | DeleteTask | DeletedTask |
     GetListById | ReceivedListById | GetAllLists | ReceivedAllLists | AddOrUpdateList | ChangedList | DeleteList | DeletedList;

@@ -4,6 +4,8 @@
     </ng-container>
 </ng-container>
 
+<button mat-raised-button color="warn" (click)="deleteTask()" [disabled]="isDone">Aufgabe löschen</button>
+
 <ng-template #elseBlock>
     <span><i class="material-icons">error_outline</i>&nbsp;Die aufgerufene Aufgabe konnte nicht gefunden werden.</span>
 </ng-template>

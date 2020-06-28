@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as TodoActions from '../../store/todo.actions';
 import * as TodoSelectors from '../../store/todo.selector';
@@ -16,8 +16,9 @@ export class TaskComponent implements OnInit {
   private id: number;
   task$: Observable<Task[]>;
   isLoading$: Observable<boolean>;
+  public isDone: boolean = false;
 
-  constructor(private active: ActivatedRoute, private store: Store) { }
+  constructor(private active: ActivatedRoute, private store: Store, private router: Router) { }
 
   ngOnInit(): void {
     this.active.fragment.subscribe((fragment: string) => this.getTask(fragment));
@@ -27,6 +28,13 @@ export class TaskComponent implements OnInit {
     this.id = fragment;
     this.store.dispatch(new TodoActions.GetTaskById(this.id));
     this.task$ = this.store.select(TodoSelectors.selectTask);
+  }
+
+  deleteTask() {
+    if (window.confirm("Aufgabe wirklich löschen?")) {
+      this.store.dispatch(new TodoActions.DeleteTask(this.id));
+      this.router.navigate(["/tasklist"]);
+    }
   }
 
 }
