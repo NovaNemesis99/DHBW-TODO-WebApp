@@ -22,13 +22,14 @@ export class TasklistDetailComponent implements OnInit {
   constructor(private active: ActivatedRoute, private store: Store, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
-    this.active.fragment.subscribe((fragment: string) => this.getTasklist(fragment));
+    this.active.fragment.subscribe((fragment: string) => this.getTasklist(fragment));  
   }
 
   getTasklist(fragment) {
     this.id = fragment;
     this.store.dispatch(new TodoActions.GetListById(this.id));
     this.tasklist$ = this.store.select(TodoSelectors.selectTasklist);
+    console.log(this.tasklist$);
   }
 
   openDialog() {
