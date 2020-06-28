@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as TodoActions from '../../store/todo.actions';
 import * as TodoSelectors from '../../store/todo.selector';
@@ -19,7 +19,7 @@ export class TasklistDetailComponent implements OnInit {
   tasklist$: Observable<Tasklist[]>;
   isLoading$: Observable<boolean>;
 
-  constructor(private active: ActivatedRoute, private store: Store, public dialog: MatDialog) { }
+  constructor(private active: ActivatedRoute, private store: Store, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.active.fragment.subscribe((fragment: string) => this.getTasklist(fragment));
@@ -41,5 +41,12 @@ export class TasklistDetailComponent implements OnInit {
     if (this.dialog.openDialogs.length == 0) {
       const dialogRef = this.dialog.open(AddTaskComponent, dialogConfig)
     }
+  }
+
+  deleteList() {
+    if(window.confirm("Liste wirklich löschen?")) {
+      this.store.dispatch(new TodoActions.DeleteList(this.id));
+    }
+    this.router.navigate(["/tasklist"]);
   }
 }

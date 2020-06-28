@@ -91,6 +91,19 @@ export class TasklistEffects {
         })
     )
 
+    @Effect() DeleteList$ = this.actions$.pipe(
+        ofType(TodoActions.DELETE_LIST),
+        map(action => <TodoActions.DeleteList>action),
+        switchMap(action => {
+            return this.TodoService.deleteList(action.payload);
+        }), mergeMap(result => {
+            return [
+                new TodoActions.DeletedList,
+                new TodoActions.GetAllLists
+            ]
+        })
+    )
+
     constructor(
         private actions$: Actions,
         private TodoService: TodoService

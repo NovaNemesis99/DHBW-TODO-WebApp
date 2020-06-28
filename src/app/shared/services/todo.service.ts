@@ -36,7 +36,7 @@ export class TodoService {
     }
 
     deleteList(id) {
-      return this.http.delete('http://localhost/dhbw-dbek-todo-core-dev/public/index.php/deleteList' + id).pipe(catchError(this.handleError.bind(this)));
+      return this.http.delete('http://localhost/dhbw-dbek-todo-core-dev/public/index.php/deleteList/' + id).pipe(catchError(this.handleError.bind(this)));
     }
 
     handleError(error: HttpErrorResponse) {
