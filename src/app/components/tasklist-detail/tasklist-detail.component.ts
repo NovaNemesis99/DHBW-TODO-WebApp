@@ -46,7 +46,8 @@ export class TasklistDetailComponent implements OnInit {
     dialogConfig.width = "1200px";
 
     if (this.dialog.openDialogs.length == 0) {
-      const dialogRef = this.dialog.open(AddTaskComponent, dialogConfig)
+      const dialogRef = this.dialog.open(AddTaskComponent, dialogConfig);
+      dialogRef.afterClosed().subscribe(() => this.getTasklist(this.id));
     }
   }
 
