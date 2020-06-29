@@ -37,7 +37,7 @@ export class TasklistComponent implements OnInit {
     this.tasklists$ = this.store.select(TodoSelectors.selectTasklist);
   }
 
-  addTasklist() {
+  async addTasklist() {
     if (this.tasklistName != '') {
       this.newTasklist.name = this.tasklistName;
       this.store.dispatch(new TodoActions.AddOrUpdateList(this.newTasklist));
@@ -45,6 +45,12 @@ export class TasklistComponent implements OnInit {
       this.tasklistName = '';
     } else {
       this.isEmpty = true;
+      await this.delay(4000);
+      this.isEmpty = false;
     }
+  }
+
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }

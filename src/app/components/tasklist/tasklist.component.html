@@ -7,8 +7,7 @@
     <input matInput placeholder="Neue Aufgabenliste" [(ngModel)]="tasklistName">
     <button mat-raised-button color="primary" (click)="addTasklist()" matSuffix><i class="material-icons">add</i></button>
 </mat-form-field>
-<ng-container *ngIf="isEmpty">Zum Hinzufügen muss ein Name eingegeben werden</ng-container>
-
+<span id="error" *ngIf="isEmpty">Zum Hinzufügen muss ein Name eingegeben werden!</span>
 <br>
 <br>
 

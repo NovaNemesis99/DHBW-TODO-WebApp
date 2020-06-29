@@ -16,3 +16,7 @@ a {
 mat-form-field {
     width: 40%;
 }
+
+#error {
+    color: red;
+}
