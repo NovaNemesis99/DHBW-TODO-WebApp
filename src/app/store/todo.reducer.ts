@@ -4,12 +4,12 @@ import { Tasklist } from '../shared/models/tasklist';
 import { Task } from '../shared/models/task';
 
 export interface TaskState {
-    task: Task[];
+    task: Task;
     isLoading: boolean;
 }
 
 export const initialStateTask: TaskState = {
-    task: [{
+    task: {
         id: null,
         name: '',
         duedate: '',
@@ -17,7 +17,7 @@ export const initialStateTask: TaskState = {
         weight: null,
         state: null,
         list_id: null
-    }],
+    },
     isLoading: false
 }
 

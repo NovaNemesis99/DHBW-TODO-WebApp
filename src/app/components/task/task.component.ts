@@ -14,7 +14,7 @@ import { Task } from 'src/app/shared/models/task';
 export class TaskComponent implements OnInit {
 
   private id: number;
-  task$: Observable<Task[]>;
+  task$: Observable<Task>;
   isLoading$: Observable<boolean>;
   public isDone: boolean = false;
 

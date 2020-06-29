@@ -4,11 +4,11 @@
     </div>
 </ng-container>
 
-<ng-container *ngFor="let element of ((task$ | async) | keyvalue)">
+<!--<ng-container *ngFor="let element of ((task$ | async))">
     <ng-container *ngIf="!(element.key == 'id' && element.value == 0); else elseBlock">
         {{element.key}}: {{element.value}} <br>
     </ng-container>
-</ng-container>
+</ng-container>-->
 
 <button mat-raised-button color="warn" (click)="deleteTask()" [disabled]="isDone">Aufgabe löschen</button>
 
