@@ -12,7 +12,8 @@
                 Fällig bis:
             </td>
             <td>
-                {{showTask.duedate}}
+                <input id="datepicker" matInput [matDatepicker]="picker" disabled [value]="showTask.duedate">
+                            <mat-datepicker #picker></mat-datepicker>
             </td>
         </tr>
         <tr>

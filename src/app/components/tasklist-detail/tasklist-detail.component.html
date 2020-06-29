@@ -4,7 +4,8 @@
     </ng-container>
 </ng-container>
 
-<button id="change" mat-raised-button color="accent" matTooltip="Änderungsoptionen ein-/ausblenden" (click)="changeName = !changeName"><span>Listenname
+<button id="change" mat-raised-button color="accent" matTooltip="Änderungsoptionen ein-/ausblenden"
+    (click)="changeName = !changeName"><span>Listenname
         ändern&nbsp;&nbsp;<ng-container *ngIf="!changeName; else notVisible"><i class="material-icons">visibility</i>
         </ng-container></span></button>
 <ng-container *ngIf="changeName">
@@ -35,7 +36,8 @@
                             Fällig bis:
                         </td>
                         <td>
-                            {{task.duedate}}
+                            <input id="datepicker" matInput [matDatepicker]="picker" disabled [value]="task.duedate">
+                            <mat-datepicker #picker></mat-datepicker>
                         </td>
                     </tr>
                     <tr>
@@ -95,7 +97,8 @@
 </ng-container><br><br>
 
 <div id="controls">
-    <button mat-fab color="primary" (click)="openDialog()" matTooltip="Aufgabe hinzufügen"><i class="material-icons">add</i></button>
+    <button mat-fab color="primary" (click)="openDialog()" matTooltip="Aufgabe hinzufügen"><i
+            class="material-icons">add</i></button>
     <button id="delete" mat-raised-button color="warn" (click)="deleteList()">Liste löschen</button>
 </div>
 

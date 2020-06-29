@@ -23,3 +23,13 @@ span {
 #delete {
     margin-left: 20px;
 }
+
+#datepicker {
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+    border: none;
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    font-size: 1em;
+    padding: 0px;
+}

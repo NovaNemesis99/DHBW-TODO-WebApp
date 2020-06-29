@@ -49,3 +49,13 @@ mat-form-field {
     display: inline-block;
     background-color: rgba(0, 0, 0, 0.6);
 }
+
+#datepicker {
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+    border: none;
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    font-size: 1em;
+    padding: 0px;
+}
