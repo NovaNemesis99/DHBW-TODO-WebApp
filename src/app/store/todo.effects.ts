@@ -52,8 +52,7 @@ export class TaskEffects {
             return this.TodoService.deleteTask(action.payload);
         }), mergeMap(result => {
             return [
-                new TodoActions.DeletedTask,
-                new TodoActions.GetAllLists
+                new TodoActions.DeletedTask
             ]
         })
     );

@@ -23,6 +23,10 @@ span {
     align-items: center;
 }
 
+#delete {
+    margin-left: 20px;
+}
+
 mat-form-field {
     width: 30%;
     margin-top: 10px;

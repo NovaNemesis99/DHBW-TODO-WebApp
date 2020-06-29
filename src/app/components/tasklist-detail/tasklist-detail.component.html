@@ -82,8 +82,9 @@
                         </td>
                     </tr>
                 </table>
-            </div>
-            <button mat-raised-button color="accent" (click)="changeTask(task.id)">Aufgabe bearbeiten</button><br><br>
+            </div><br>
+            <button mat-raised-button color="accent" (click)="changeTask(task.id)">Aufgabe bearbeiten</button>
+            <button id="delete" mat-raised-button color="warn" (click)="deleteTask(task.id)">Aufgabe löschen</button><br><br>
             <mat-divider></mat-divider>
         </ng-container>
     </ng-container>

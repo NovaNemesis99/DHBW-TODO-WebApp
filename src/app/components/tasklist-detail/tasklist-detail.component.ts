@@ -93,4 +93,14 @@ export class TasklistDetailComponent implements OnInit {
       dialogRef1.afterClosed().subscribe(() => this.getTasklist(this.id));
     }
   }
+
+  async deleteTask(id) {
+    if (window.confirm("Aufgabe wirklich löschen?")) {
+      this.reloading = true;
+      this.store.dispatch(new TodoActions.DeleteTask(id));
+      await this.delay(500);
+      this.getTasklist(this.id);
+      this.reloading = false;
+    }
+  }
 }
