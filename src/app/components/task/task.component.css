@@ -7,3 +7,19 @@ span {
     width: 50%;
     margin: 0 auto;
 }
+
+#open {
+    color: red;
+}
+
+#working {
+    color: rgb(255, 174, 0);
+}
+
+#done {
+    color: green;
+}
+
+#delete {
+    margin-left: 20px;
+}

@@ -17,6 +17,15 @@ export class TaskComponent implements OnInit {
   task$: Observable<Task>;
   isLoading$: Observable<boolean>;
   public isDone: boolean = false;
+  showTask: Task = {
+    id: null,
+    name: "",
+    duedate: "",
+    description: "",
+    weight: null,
+    state: null,
+    list_id: null
+  };
 
   constructor(private active: ActivatedRoute, private store: Store, private router: Router) { }
 
@@ -29,6 +38,9 @@ export class TaskComponent implements OnInit {
     this.store.dispatch(new TodoActions.GetTaskById(this.id));
     this.task$ = this.store.select(TodoSelectors.selectTask);
     this.isLoading$ = this.store.select(TodoSelectors.selectIsLoadingTask);
+    this.task$.subscribe(value => {
+      this.showTask = JSON.parse(JSON.stringify(value));
+    });
   }
 
   deleteTask() {

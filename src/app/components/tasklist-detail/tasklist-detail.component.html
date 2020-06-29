@@ -24,7 +24,7 @@
 <ng-container *ngFor="let attribute of this.placeholder.tasklist | keyvalue">
     <ng-container *ngIf="attribute.key == 'ownTask'">
         <ng-container *ngFor="let task of attribute.value">
-            <h3>Aufgabenname: {{task.name}}</h3>
+            <h3>Aufgabe: {{task.name}}</h3>
             <div id="taskContainer">
                 <table>
                     <tr>

@@ -4,14 +4,68 @@
     </div>
 </ng-container>
 
-<!--<ng-container *ngFor="let element of ((task$ | async))">
-    <ng-container *ngIf="!(element.key == 'id' && element.value == 0); else elseBlock">
-        {{element.key}}: {{element.value}} <br>
-    </ng-container>
-</ng-container>-->
+<h1>Aufgabe: {{showTask.name}}</h1>
+<div id="taskContainer">
+    <table>
+        <tr>
+            <td>
+                Fällig bis:
+            </td>
+            <td>
+                {{showTask.duedate}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Beschreibung:&nbsp;
+            </td>
+            <td>
+                {{showTask.description}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Gewichtung:
+            </td>
+            <td>
+                <ng-container *ngIf="showTask.weight == 1">
+                    unwichtig
+                </ng-container>
+                <ng-container *ngIf="showTask.weight == 2">
+                    eher unwichtig
+                </ng-container>
+                <ng-container *ngIf="showTask.weight == 3">
+                    durchschnittlich
+                </ng-container>
+                <ng-container *ngIf="showTask.weight == 4">
+                    wichtig
+                </ng-container>
+                <ng-container *ngIf="showTask.weight == 5">
+                    sehr wichtig
+                </ng-container>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Status:
+            </td>
+            <td>
+                <ng-container *ngIf="showTask.state == 0">
+                    <span id="open">offen</span>
+                </ng-container>
+                <ng-container *ngIf="showTask.state == 1">
+                    <span id="working">in Bearbeitung</span>
+                </ng-container>
+                <ng-container *ngIf="showTask.state == 2">
+                    <span id="done">erledigt</span>
+                </ng-container>
+            </td>
+        </tr>
+    </table>
 
-<button mat-raised-button color="warn" (click)="deleteTask()" [disabled]="isDone">Aufgabe löschen</button>
+    <button mat-raised-button color="warn" (click)="deleteTask()" [disabled]="isDone">Aufgabe löschen</button>
 
-<ng-template #elseBlock>
-    <span><i class="material-icons">error_outline</i>&nbsp;Die aufgerufene Aufgabe konnte nicht gefunden werden.</span>
-</ng-template>
+    <ng-template #elseBlock>
+        <span><i class="material-icons">error_outline</i>&nbsp;Die aufgerufene Aufgabe konnte nicht gefunden
+            werden.</span>
+    </ng-template>
