@@ -3,13 +3,20 @@
     angezeigt.</p>
 
 <mat-form-field appearance="outline">
-    <mat-label>Neue Aufgabenliste hinzufügen</mat-label>
+    <mat-label>Neue Aufgabenliste hinzufügen (Name eingeben)</mat-label>
     <input matInput placeholder="Neue Aufgabenliste" [(ngModel)]="tasklistName">
-    <button mat-raised-button color="primary" (click)="addTasklist()" matSuffix><i class="material-icons">add</i></button>
+    <button mat-raised-button color="primary" (click)="addTasklist()" matSuffix><i
+            class="material-icons">add</i></button>
 </mat-form-field>
 <span id="error" *ngIf="isEmpty">Zum Hinzufügen muss ein Name eingegeben werden!</span>
 <br>
 <br>
+
+<ng-container *ngIf="(isLoading$ | async)">
+    <div id="loading">
+        <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+    </div>
+</ng-container>
 
 <mat-accordion>
     <ng-container *ngFor="let tasklist of (tasklists$ | async)">

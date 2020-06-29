@@ -28,6 +28,7 @@ export class TaskComponent implements OnInit {
     this.id = fragment;
     this.store.dispatch(new TodoActions.GetTaskById(this.id));
     this.task$ = this.store.select(TodoSelectors.selectTask);
+    this.isLoading$ = this.store.select(TodoSelectors.selectIsLoadingTask);
   }
 
   deleteTask() {

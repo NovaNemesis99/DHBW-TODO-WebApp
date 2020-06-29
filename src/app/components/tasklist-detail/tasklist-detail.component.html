@@ -2,14 +2,6 @@
     <ng-container *ngIf="!(element.key == 'ownTask' || element.key == 'id')">
         <h1><u>Aufgabenliste "{{element.value}}"</u></h1>
     </ng-container>
-    <!--<ng-container *ngIf="element.key == 'ownTask'">
-        <ng-container *ngFor="let task of element.value | keyvalue">
-            <ng-container *ngFor="let attributes of task.value | keyvalue">
-                {{attributes.key}}: {{attributes.value}} <br>
-            </ng-container>
-            <button mat-raised-button color="accent" disabled>Aufgabe bearbeiten</button><br><br>
-        </ng-container>
-    </ng-container><br>-->
 </ng-container>
 <ng-container *ngFor="let attribute of this.placeholder.tasklist | keyvalue">
     <ng-container *ngIf="attribute.key == 'ownTask'">

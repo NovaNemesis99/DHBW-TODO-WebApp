@@ -20,3 +20,8 @@ mat-form-field {
 #error {
     color: red;
 }
+
+#loading {
+    width: 50%;
+    margin: 0 auto;
+}

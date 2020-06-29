@@ -2,3 +2,8 @@ span {
     display: flex;
     align-items: center;
 }
+
+#loading {
+    width: 50%;
+    margin: 0 auto;
+}

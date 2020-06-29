@@ -35,6 +35,7 @@ export class TasklistComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(new TodoActions.GetAllLists);
     this.tasklists$ = this.store.select(TodoSelectors.selectTasklist);
+    this.isLoading$ = this.store.select(TodoSelectors.selectIsLoadingTasklist);
   }
 
   async addTasklist() {
@@ -43,6 +44,7 @@ export class TasklistComponent implements OnInit {
       this.store.dispatch(new TodoActions.AddOrUpdateList(this.newTasklist));
       this.isEmpty = false;
       this.tasklistName = '';
+      window.location.reload();
     } else {
       this.isEmpty = true;
       await this.delay(4000);

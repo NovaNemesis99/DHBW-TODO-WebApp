@@ -1,3 +1,9 @@
+<ng-container *ngIf="(isLoading$ | async)">
+    <div id="loading">
+        <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+    </div>
+</ng-container>
+
 <ng-container *ngFor="let element of ((task$ | async) | keyvalue)">
     <ng-container *ngIf="!(element.key == 'id' && element.value == 0); else elseBlock">
         {{element.key}}: {{element.value}} <br>
