@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Tasklist } from 'src/app/shared/models/tasklist';
 import { AppState } from 'src/app/store/app.state';
 import * as TodoSelectors from '../../store/todo.selector';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tasklist',
@@ -30,7 +31,7 @@ export class TasklistComponent implements OnInit {
   
   isEmpty: boolean = false;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>, private router: Router) { }
 
   ngOnInit(): void {
     this.store.dispatch(new TodoActions.GetAllLists);
@@ -44,7 +45,9 @@ export class TasklistComponent implements OnInit {
       this.store.dispatch(new TodoActions.AddOrUpdateList(this.newTasklist));
       this.isEmpty = false;
       this.tasklistName = '';
-      window.location.reload();
+      this.router.navigateByUrl("/", {skipLocationChange: true }).then(() => {
+        this.router.navigate(["/tasklist"]);
+      })
     } else {
       this.isEmpty = true;
       await this.delay(4000);
