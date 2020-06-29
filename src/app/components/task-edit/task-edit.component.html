@@ -1,1 +1,53 @@
-<p>task-edit works!</p>
+<h1 mat-dialog-title>Aufgabe ändern:</h1>
+
+<div mat-dialog-content>
+    <form (ngSubmit)="submitTask()" #changeForm="ngForm">
+        <mat-form-field appearance="outline" class="form-group">
+            <mat-label>Aufgabenname</mat-label>
+            <input class="form-control" name="name" #name="ngModel" required matInput placeholder="Neue Aufgabe"
+                [(ngModel)]="changedTask.name">
+            <div [hidden]="name.valid || name.pristine">
+                Es wird ein Name benötigt.
+            </div>
+        </mat-form-field><br>
+        <mat-form-field appearance="outline" class="form-group">
+            <mat-label>Enddatum (über den Picker rechts auswählen)</mat-label>
+            <input class="form-control" name="duedate" matInput [matDatepicker]="picker" [(ngModel)]="changedTask.duedate"
+                disabled>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker disabled="false"></mat-datepicker>
+        </mat-form-field><br>
+        <mat-form-field appearance="outline" class="form-group">
+            <mat-label>Beschreibung</mat-label>
+            <textarea class="form-control" name="description" matInput cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"
+                [(ngModel)]="changedTask.description"></textarea>
+        </mat-form-field><br>
+        <mat-form-field appearance="outline" class="form-group">
+            <mat-label>Gewichtung</mat-label>
+            <mat-select class="form-control" name="weight" required [(ngModel)]="changedTask.weight">
+                <mat-option value="1">unwichtig</mat-option>
+                <mat-option value="2">eher unwichtig</mat-option>
+                <mat-option value="3">durchschnittlich</mat-option>
+                <mat-option value="4">wichtig</mat-option>
+                <mat-option value="5">sehr wichtig</mat-option>
+            </mat-select>
+        </mat-form-field><br>
+        <mat-form-field appearance="outline" class="form-group">
+            <mat-label>Status</mat-label>
+            <mat-select class="form-control" name="state" required [(ngModel)]="changedTask.state">
+                <mat-option value="0">offen</mat-option>
+                <mat-option value="1">in Bearbeitung</mat-option>
+                <mat-option value="2">erledigt</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div id="action">
+            <mat-label>* Pflichtfelder</mat-label><br>
+            <button mat-raised-button color="accent" [disabled]="!changeForm.form.valid">Ändern</button>
+        </div>
+    </form>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close color="warn">Abbrechen</button>
+</div>
