@@ -17,3 +17,18 @@ h1 {
 #delete {
     margin-left: 20px;
 }
+
+span {
+    display: flex;
+    align-items: center;
+}
+
+mat-form-field {
+    width: 30%;
+    margin-top: 10px;
+}
+
+#loading {
+    width: 50%;
+    margin: 0 auto;
+}

@@ -40,7 +40,7 @@ export const ADD_OR_UPDATE_TASK = "[Task] AddOrUpdateTask";
 export class AddOrUpdateTask implements Action {
     readonly type = ADD_OR_UPDATE_TASK;
 
-    constructor(public payload: Task) { }
+    constructor(public payload: {}) { }
 }
 
 export const CHANGED_TASK = "[Task] ChangedTask";
@@ -100,7 +100,7 @@ export const ADD_OR_UPDATE_LIST = "[Tasklist] AddOrUpdateList";
 export class AddOrUpdateList implements Action {
     readonly type = ADD_OR_UPDATE_LIST;
 
-    constructor(public payload: Tasklist) { }
+    constructor(public payload: {}) { }
 }
 
 export const CHANGED_LIST = "[Tasklist] ChangedList";

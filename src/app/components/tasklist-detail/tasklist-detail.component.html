@@ -3,6 +3,24 @@
         <h1><u>Aufgabenliste "{{element.value}}"</u></h1>
     </ng-container>
 </ng-container>
+
+<button id="change" mat-raised-button color="accent" (click)="changeName = !changeName"><span>Listenname ändern&nbsp;&nbsp;<ng-container *ngIf="!changeName; else notVisible"><i class="material-icons">visibility</i></ng-container></span></button>
+<ng-container *ngIf="changeName">
+    <div id="changeContainer">
+        <mat-form-field appearance="outline">
+            <mat-label>Neuen Namen eingeben:</mat-label>
+            <input matInput [(ngModel)]="newName" placeholder="Neuer Name">
+            <button mat-raised-button color="primary" (click)="changeListName()" matSuffix><i class="material-icons">add</i></button>
+        </mat-form-field>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="reloading">
+    <div id="loading">
+        <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+    </div>
+</ng-container>
+
 <ng-container *ngFor="let attribute of this.placeholder.tasklist | keyvalue">
     <ng-container *ngIf="attribute.key == 'ownTask'">
         <ng-container *ngFor="let task of attribute.value">
@@ -74,3 +92,9 @@
 <button mat-fab color="primary" (click)="openDialog()"><i class="material-icons">add</i></button>
 
 <button id="delete" mat-raised-button color="warn" (click)="deleteList()">Liste löschen</button>
+
+<ng-template #notVisible>
+    <ng-container>
+        <i class="material-icons">visibility_off</i>
+    </ng-container>
+</ng-template>

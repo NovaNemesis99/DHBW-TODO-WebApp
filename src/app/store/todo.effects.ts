@@ -97,8 +97,7 @@ export class TasklistEffects {
             return this.TodoService.addOrUpdateList(action.payload);
         }), mergeMap(result => {
             return [
-                new TodoActions.ChangedList,
-                new TodoActions.GetAllLists
+                new TodoActions.ChangedList
             ]
         })
     )
