@@ -3,8 +3,7 @@ h1 {
 }
 
 #routerWrapper {
-    margin-left: 10px;
-    margin-bottom: 90px;
+    margin: 0px 10px 90px 10px;
 }
 
 app-footer {

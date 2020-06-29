@@ -36,3 +36,16 @@ mat-form-field {
     width: 50%;
     margin: 0 auto;
 }
+
+#controls {
+    text-align: right;
+    position: fixed;
+    top: 85%;
+    right: 0;
+    width: auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.6);
+}

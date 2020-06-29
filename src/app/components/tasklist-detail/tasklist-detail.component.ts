@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 import { Tasklist } from 'src/app/shared/models/tasklist';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddTaskComponent } from '../add-task/add-task.component';
-import { Location } from '@angular/common';
 import { TaskEditComponent } from '../task-edit/task-edit.component';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-tasklist-detail',
@@ -28,7 +28,7 @@ export class TasklistDetailComponent implements OnInit {
   newName: String = "";
   reloading: boolean = false;
 
-  constructor(private active: ActivatedRoute, private store: Store, public dialog: MatDialog, private router: Router, private location: Location) { }
+  constructor(private active: ActivatedRoute, private store: Store, public dialog: MatDialog, private router: Router, private overlay: Overlay) { }
 
   ngOnInit(): void {
     this.active.fragment.subscribe((fragment: string) => this.getTasklist(fragment));
@@ -49,6 +49,7 @@ export class TasklistDetailComponent implements OnInit {
     dialogConfig.autoFocus = false;
     dialogConfig.data = this.id;
     dialogConfig.width = "1200px";
+    dialogConfig.hasBackdrop = true;
 
     if (this.dialog.openDialogs.length == 0) {
       const dialogRef = this.dialog.open(AddTaskComponent, dialogConfig);
