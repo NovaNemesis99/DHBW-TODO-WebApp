@@ -1,0 +1,41 @@
+div {
+    display: flex;
+    align-items: center;
+}
+
+span {
+    display: flex;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+mat-form-field {
+    width: 40%;
+}
+
+#error {
+    color: red;
+}
+
+#loading {
+    width: 50%;
+    margin: 0 auto;
+}
+
+mat-panel-description {
+    color: white;
+}
+
+#datepicker {
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+    border: none;
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    font-size: 1em;
+    padding: 0px;
+}

@@ -1,0 +1,109 @@
+<ng-container *ngFor="let element of ((tasklist$ |async) | keyvalue)">
+    <ng-container *ngIf="!(element.key == 'ownTask' || element.key == 'id')">
+        <h1><u>Aufgabenliste "{{element.value}}"</u></h1>
+    </ng-container>
+</ng-container>
+
+<button id="change" mat-raised-button color="accent" matTooltip="Änderungsoptionen ein-/ausblenden"
+    (click)="changeName = !changeName"><span>Listenname
+        ändern&nbsp;&nbsp;<ng-container *ngIf="!changeName; else notVisible"><i class="material-icons">visibility</i>
+        </ng-container></span></button>
+<ng-container *ngIf="changeName">
+    <div id="changeContainer">
+        <mat-form-field appearance="outline">
+            <mat-label>Neuen Namen eingeben:</mat-label>
+            <input matInput [(ngModel)]="newName" placeholder="Neuer Name">
+            <button mat-raised-button color="primary" (click)="changeListName()" matTooltip="Namen ändern" matSuffix><i
+                    class="material-icons">add</i></button>
+        </mat-form-field>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="reloading">
+    <div id="loading">
+        <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+    </div>
+</ng-container>
+
+<ng-container *ngFor="let attribute of this.placeholder.tasklist | keyvalue">
+    <ng-container *ngIf="attribute.key == 'ownTask'">
+        <ng-container *ngFor="let task of attribute.value">
+            <h3>Aufgabe: {{task.name}}</h3>
+            <div id="taskContainer">
+                <table>
+                    <tr>
+                        <td>
+                            Fällig bis:
+                        </td>
+                        <td>
+                            <input id="datepicker" matInput [matDatepicker]="picker" disabled [value]="task.duedate">
+                            <mat-datepicker #picker></mat-datepicker>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Beschreibung:&nbsp;
+                        </td>
+                        <td>
+                            {{task.description}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Gewichtung:
+                        </td>
+                        <td>
+                            <ng-container *ngIf="task.weight == 1">
+                                unwichtig
+                            </ng-container>
+                            <ng-container *ngIf="task.weight == 2">
+                                eher unwichtig
+                            </ng-container>
+                            <ng-container *ngIf="task.weight == 3">
+                                durchschnittlich
+                            </ng-container>
+                            <ng-container *ngIf="task.weight == 4">
+                                wichtig
+                            </ng-container>
+                            <ng-container *ngIf="task.weight == 5">
+                                sehr wichtig
+                            </ng-container>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Status:
+                        </td>
+                        <td>
+                            <ng-container *ngIf="task.state == 0">
+                                <span id="open">offen</span>
+                            </ng-container>
+                            <ng-container *ngIf="task.state == 1">
+                                <span id="working">in Bearbeitung</span>
+                            </ng-container>
+                            <ng-container *ngIf="task.state == 2">
+                                <span id="done">erledigt</span>
+                            </ng-container>
+                        </td>
+                    </tr>
+                </table>
+            </div><br>
+            <button mat-raised-button color="accent" (click)="changeTask(task.id)">Aufgabe bearbeiten</button>
+            <button id="delete" mat-raised-button color="warn" (click)="deleteTask(task.id)">Aufgabe
+                löschen</button><br><br>
+            <mat-divider></mat-divider>
+        </ng-container>
+    </ng-container>
+</ng-container><br><br>
+
+<div id="controls">
+    <button mat-fab color="primary" (click)="openDialog()" matTooltip="Aufgabe hinzufügen"><i
+            class="material-icons">add</i></button>
+    <button id="delete" mat-raised-button color="warn" (click)="deleteList()">Liste löschen</button>
+</div>
+
+<ng-template #notVisible>
+    <ng-container>
+        <i class="material-icons">visibility_off</i>
+    </ng-container>
+</ng-template>

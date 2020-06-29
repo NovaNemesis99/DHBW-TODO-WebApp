@@ -1,0 +1,44 @@
+<h1><u>Ihre Aufgabenlisten</u></h1>
+<p>Unten finden Sie alle Aufgabenlisten. Durch aufklappen wird eine gekürzte Ansicht der dazugehörigen Aufgaben
+    angezeigt.</p>
+
+<mat-form-field appearance="outline">
+    <mat-label>Neue Aufgabenliste hinzufügen (Name eingeben)</mat-label>
+    <input matInput placeholder="Neue Aufgabenliste" [(ngModel)]="tasklistName">
+    <button mat-raised-button matTooltip="Neue Liste hinzufügen" color="primary" type="submit" (click)="addTasklist()"
+        matSuffix><i class="material-icons">add</i></button>
+</mat-form-field>
+<span id="error" *ngIf="isEmpty">Zum Hinzufügen muss ein Name eingegeben werden!</span>
+<br>
+<br>
+
+<ng-container *ngIf="(isLoading$ | async)">
+    <div id="loading">
+        <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+    </div>
+</ng-container>
+
+<mat-accordion>
+    <ng-container *ngFor="let tasklist of (tasklists$ | async)">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <div>{{tasklist.name}}&nbsp;&nbsp;<a routerLink="/specificTasklist" fragment="{{tasklist.id}}"><button
+                            mat-raised-button color="accent" matTooltip="Zur Detailansicht navigieren">Detailansicht <i
+                                class="material-icons">arrow_right_alt</i></button></a></div>
+            </mat-expansion-panel-header>
+            <mat-panel-description>
+                <ul>
+                    <ng-container *ngFor="let task of tasklist.ownTask">
+                        <li>{{task.name}} | <input id="datepicker" matInput [matDatepicker]="picker" disabled
+                                [value]="task.duedate">
+                            <mat-datepicker #picker></mat-datepicker>
+                            <a routerLink="/task" fragment="{{task.id}}"
+                                matTooltip="Zur Detailansicht navigieren"><span>Details <i
+                                        class="material-icons">arrow_right_alt</i></span></a>
+                        </li><br>
+                    </ng-container>
+                </ul>
+            </mat-panel-description>
+        </mat-expansion-panel>
+    </ng-container>
+</mat-accordion>

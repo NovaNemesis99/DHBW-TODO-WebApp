@@ -1,6 +1,13 @@
-div {
-    background-color: gray;
-    padding: 20px;
-    color: white;
+mat-toolbar {
     margin-bottom: 10px;
+}
+
+a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+a:last-of-type {
+    margin: 0;
 }

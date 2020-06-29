@@ -1,0 +1,35 @@
+span {
+    display: flex;
+    align-items: center;
+}
+
+#loading {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#open {
+    color: red;
+}
+
+#working {
+    color: rgb(255, 174, 0);
+}
+
+#done {
+    color: green;
+}
+
+#delete {
+    margin-left: 20px;
+}
+
+#datepicker {
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+    border: none;
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    font-size: 1em;
+    padding: 0px;
+}
