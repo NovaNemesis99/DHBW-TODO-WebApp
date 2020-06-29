@@ -5,6 +5,8 @@ import * as TodoActions from '../../store/todo.actions';
 import * as TodoSelectors from '../../store/todo.selector';
 import { Observable } from 'rxjs';
 import { Task } from 'src/app/shared/models/task';
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { TaskEditComponent } from '../task-edit/task-edit.component';
 
 @Component({
   selector: 'app-task',
@@ -27,7 +29,7 @@ export class TaskComponent implements OnInit {
     list_id: null
   };
 
-  constructor(private active: ActivatedRoute, private store: Store, private router: Router) { }
+  constructor(private active: ActivatedRoute, private store: Store, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.active.fragment.subscribe((fragment: string) => this.getTask(fragment));
@@ -41,6 +43,19 @@ export class TaskComponent implements OnInit {
     this.task$.subscribe(value => {
       this.showTask = JSON.parse(JSON.stringify(value));
     });
+  }
+
+  changeTask(id) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = false;
+    dialogConfig.data = id;
+    dialogConfig.width = "1200px";
+
+    if (this.dialog.openDialogs.length == 0) {
+      const dialogRef1 = this.dialog.open(TaskEditComponent, dialogConfig);
+      dialogRef1.afterClosed().subscribe(() => this.getTask(this.id));
+    }
   }
 
   deleteTask() {

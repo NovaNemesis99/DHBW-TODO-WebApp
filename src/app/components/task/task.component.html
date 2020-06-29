@@ -61,9 +61,10 @@
                 </ng-container>
             </td>
         </tr>
-    </table>
+    </table><br>
 
-    <button mat-raised-button color="warn" (click)="deleteTask()" [disabled]="isDone">Aufgabe löschen</button>
+    <button mat-raised-button color="accent" (click)="changeTask(showTask.id)">Aufgabe bearbeiten</button>
+    <button mat-raised-button id="delete" color="warn" (click)="deleteTask()" [disabled]="isDone">Aufgabe löschen</button>
 
     <ng-template #elseBlock>
         <span><i class="material-icons">error_outline</i>&nbsp;Die aufgerufene Aufgabe konnte nicht gefunden
