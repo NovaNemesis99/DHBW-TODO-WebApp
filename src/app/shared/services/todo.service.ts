@@ -4,12 +4,13 @@ import { catchError } from 'rxjs/operators';
 
 import { Tasklist } from '../models/tasklist';
 import { Task } from '../models/task';
+import { SnackBarService } from './snack-bar.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private snackBar: SnackBarService) { }
 
     getTaskById(id) {
       return this.http.get<Task[]>('http://localhost/dhbw-dbek-todo-core/public/index.php/getTask/' + id).pipe(catchError(this.handleError.bind(this)));
@@ -45,12 +46,10 @@ export class TodoService {
 
     handleError(error: HttpErrorResponse) {
       if(error.error instanceof ErrorEvent) {
-        window.alert('something went wrong');
+        this.snackBar.open("Es ist ein Fehler aufgetreten: " + error.error.message, "OK", 8000, "error_bar");
       }
       else {
-        if(error.status == 404) {
-          window.alert();
-        }
+        this.snackBar.open(`Fehler! Serverstatus: ${error.status}\nFehlernachricht: ${error.message}`, "OK", 10000, "error_bar");
       }
     }
 }

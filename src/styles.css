@@ -9,3 +9,14 @@ body {
 .mat-form-field-flex {
     align-items: center !important;
 }
+
+.success_bar {
+    background-color: rgb(145, 255, 72);
+    border: 2px solid green;
+}
+
+.error_bar {
+    background-color: rgb(255, 94, 94);
+    border: 2px solid red;
+    white-space: pre-wrap;
+}

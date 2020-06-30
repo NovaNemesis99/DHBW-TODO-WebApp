@@ -3,6 +3,10 @@ div {
     align-items: center;
 }
 
+ul {
+    list-style-type: none;
+}
+
 span {
     display: flex;
     align-items: center;
@@ -10,7 +14,7 @@ span {
 
 a {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 mat-form-field {
@@ -30,12 +34,17 @@ mat-panel-description {
     color: white;
 }
 
-#datepicker {
-    color: white;
+.datepicker {
+    color: black;
     background-color: rgba(0, 0, 0, 0);
     outline: none;
     border: none;
     font-family: Roboto, "Helvetica Neue", sans-serif; 
     font-size: 1em;
     padding: 0px;
+}
+
+mat-card {
+    background-color: #b0bec5;
+    color: black;
 }

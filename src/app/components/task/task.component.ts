@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Task } from 'src/app/shared/models/task';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { TaskEditComponent } from '../task-edit/task-edit.component';
+import { AppState } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-task',
@@ -18,7 +19,7 @@ export class TaskComponent implements OnInit {
   private id: number;
   task$: Observable<Task>;
   isLoading$: Observable<boolean>;
-  public isDone: boolean = false;
+  isDone: boolean = true;
   showTask: Task = {
     id: null,
     name: "",
@@ -29,7 +30,7 @@ export class TaskComponent implements OnInit {
     list_id: null
   };
 
-  constructor(private active: ActivatedRoute, private store: Store, public dialog: MatDialog, private router: Router) { }
+  constructor(private active: ActivatedRoute, private store: Store<AppState>, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.active.fragment.subscribe((fragment: string) => this.getTask(fragment));
@@ -42,6 +43,9 @@ export class TaskComponent implements OnInit {
     this.isLoading$ = this.store.select(TodoSelectors.selectIsLoadingTask);
     this.task$.subscribe(value => {
       this.showTask = JSON.parse(JSON.stringify(value));
+      if(this.showTask.state != 2 && this.showTask.state != null) {
+        this.isDone = false;
+      }
     });
   }
 
@@ -54,8 +58,15 @@ export class TaskComponent implements OnInit {
 
     if (this.dialog.openDialogs.length == 0) {
       const dialogRef1 = this.dialog.open(TaskEditComponent, dialogConfig);
-      dialogRef1.afterClosed().subscribe(() => this.getTask(this.id));
+      dialogRef1.afterClosed().subscribe(async () => {
+        await this.delay(100);
+        this.getTask(this.id)
+      });
     }
+  }
+  
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   deleteTask() {
@@ -63,6 +74,10 @@ export class TaskComponent implements OnInit {
       this.store.dispatch(new TodoActions.DeleteTask(this.id));
       this.router.navigate(["/tasklist"]);
     }
+  }
+
+  navigateBack() {
+    this.router.navigate(["/tasklist"]);
   }
 
 }

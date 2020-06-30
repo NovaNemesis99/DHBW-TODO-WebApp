@@ -30,6 +30,7 @@ span {
 mat-form-field {
     width: 30%;
     margin-top: 10px;
+    margin-bottom: -40px;
 }
 
 #loading {
@@ -50,7 +51,7 @@ mat-form-field {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-#datepicker {
+.datepicker {
     color: white;
     background-color: rgba(0, 0, 0, 0);
     outline: none;
@@ -58,4 +59,8 @@ mat-form-field {
     font-family: Roboto, "Helvetica Neue", sans-serif; 
     font-size: 1em;
     padding: 0px;
+}
+
+mat-card:first-of-type {
+    margin-top: 20px;
 }

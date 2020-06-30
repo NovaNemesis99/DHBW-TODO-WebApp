@@ -45,7 +45,8 @@ export class TasklistComponent implements OnInit {
       this.store.dispatch(new TodoActions.AddOrUpdateList(this.newTasklist));
       this.isEmpty = false;
       this.tasklistName = '';
-      this.router.navigateByUrl("/", {skipLocationChange: true }).then(() => {
+      this.router.navigateByUrl("/", {skipLocationChange: true }).then(async () => {
+        await this.delay(50);
         this.router.navigate(["/tasklist"]);
       })
     } else {

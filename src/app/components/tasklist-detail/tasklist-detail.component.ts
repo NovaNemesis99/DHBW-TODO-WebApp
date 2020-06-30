@@ -9,6 +9,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { TaskEditComponent } from '../task-edit/task-edit.component';
 import { Overlay } from '@angular/cdk/overlay';
+import { AppState } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-tasklist-detail',
@@ -28,7 +29,7 @@ export class TasklistDetailComponent implements OnInit {
   newName: String = "";
   reloading: boolean = false;
 
-  constructor(private active: ActivatedRoute, private store: Store, public dialog: MatDialog, private router: Router, private overlay: Overlay) { }
+  constructor(private active: ActivatedRoute, private store: Store<AppState>, public dialog: MatDialog, private router: Router, private overlay: Overlay) { }
 
   ngOnInit(): void {
     this.active.fragment.subscribe((fragment: string) => this.getTasklist(fragment));
@@ -53,15 +54,20 @@ export class TasklistDetailComponent implements OnInit {
 
     if (this.dialog.openDialogs.length == 0) {
       const dialogRef = this.dialog.open(AddTaskComponent, dialogConfig);
-      dialogRef.afterClosed().subscribe(() => this.getTasklist(this.id));
+      dialogRef.afterClosed().subscribe(async () => {
+        await this.delay(100);
+        this.getTasklist(this.id)
+      });
+
     }
   }
 
   deleteList() {
     if (window.confirm("Liste wirklich löschen?")) {
       this.store.dispatch(new TodoActions.DeleteList(this.id));
+      this.router.navigate(["/tasklist"]);
     }
-    this.router.navigate(["/tasklist"]);
+    
   }
 
   async changeListName() {

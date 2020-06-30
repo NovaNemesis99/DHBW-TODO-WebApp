@@ -1,4 +1,16 @@
-h1 {
+h2 {
     text-align: center;
     text-decoration: underline;
+}
+
+div {
+    margin-bottom: 20px;
+}
+
+table tr td:first-child {
+    padding-right: 16px;
+}
+
+.material-icons, .material-icons-outlined {
+    font-size: 36px;;
 }

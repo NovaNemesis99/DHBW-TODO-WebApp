@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Store, ActionsSubject } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.state';
+import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { ofType } from '@ngrx/effects';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +11,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  subc = new Subscription();
+
+  constructor(private store: Store<AppState>, private actionsSubj: ActionsSubject, private snackBar: SnackBarService) {
+    this.subc = actionsSubj.pipe(
+      ofType("[Tasklist] ChangedList")
+    ).subscribe(data => this.snackBar.open("Liste erfolgreich hinzugefügt / geändert", "", 4000, "success_bar"));
+    this.subc = actionsSubj.pipe(
+      ofType("[Task] ChangedTask")
+    ).subscribe(data => this.snackBar.open("Aufgabe erfolgreich hinzugefügt / geändert", "", 4000, "success_bar"));
+    this.subc = actionsSubj.pipe(
+      ofType("[Tasklist] DeletedList", "[Task] DeletedTask")
+    ).subscribe(data => this.snackBar.open("Erfolgreich gelöscht", "", 4000, "success_bar"));
+  }
+
   title = 'TODO';
+
+  ngOnDestroy() {
+    this.subc.unsubscribe();
+  }
 }

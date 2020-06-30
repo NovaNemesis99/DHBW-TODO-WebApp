@@ -28,69 +28,80 @@
 <ng-container *ngFor="let attribute of this.placeholder.tasklist | keyvalue">
     <ng-container *ngIf="attribute.key == 'ownTask'">
         <ng-container *ngFor="let task of attribute.value">
-            <h3>Aufgabe: {{task.name}}</h3>
-            <div id="taskContainer">
-                <table>
-                    <tr>
-                        <td>
-                            Fällig bis:
-                        </td>
-                        <td>
-                            <input id="datepicker" matInput [matDatepicker]="picker" disabled [value]="task.duedate">
-                            <mat-datepicker #picker></mat-datepicker>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Beschreibung:&nbsp;
-                        </td>
-                        <td>
-                            {{task.description}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Gewichtung:
-                        </td>
-                        <td>
-                            <ng-container *ngIf="task.weight == 1">
-                                unwichtig
-                            </ng-container>
-                            <ng-container *ngIf="task.weight == 2">
-                                eher unwichtig
-                            </ng-container>
-                            <ng-container *ngIf="task.weight == 3">
-                                durchschnittlich
-                            </ng-container>
-                            <ng-container *ngIf="task.weight == 4">
-                                wichtig
-                            </ng-container>
-                            <ng-container *ngIf="task.weight == 5">
-                                sehr wichtig
-                            </ng-container>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Status:
-                        </td>
-                        <td>
-                            <ng-container *ngIf="task.state == 0">
-                                <span id="open">offen</span>
-                            </ng-container>
-                            <ng-container *ngIf="task.state == 1">
-                                <span id="working">in Bearbeitung</span>
-                            </ng-container>
-                            <ng-container *ngIf="task.state == 2">
-                                <span id="done">erledigt</span>
-                            </ng-container>
-                        </td>
-                    </tr>
-                </table>
-            </div><br>
-            <button mat-raised-button color="accent" (click)="changeTask(task.id)">Aufgabe bearbeiten</button>
-            <button id="delete" mat-raised-button color="warn" (click)="deleteTask(task.id)">Aufgabe
-                löschen</button><br><br>
+            <br>
+            <mat-card>
+                <h3>Aufgabe: {{task.name}}</h3>
+                <div id="taskContainer">
+                    <table>
+                        <tr>
+                            <td>
+                                Fällig bis:
+                            </td>
+                            <td>
+                                <input class="datepicker" matInput [matDatepicker]="picker" disabled
+                                    [value]="task.duedate">
+                                <mat-datepicker #picker></mat-datepicker>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Beschreibung:&nbsp;
+                            </td>
+                            <td>
+                                {{task.description}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Gewichtung:
+                            </td>
+                            <td>
+                                <ng-container *ngIf="task.weight == 1">
+                                    unwichtig
+                                </ng-container>
+                                <ng-container *ngIf="task.weight == 2">
+                                    eher unwichtig
+                                </ng-container>
+                                <ng-container *ngIf="task.weight == 3">
+                                    durchschnittlich
+                                </ng-container>
+                                <ng-container *ngIf="task.weight == 4">
+                                    wichtig
+                                </ng-container>
+                                <ng-container *ngIf="task.weight == 5">
+                                    sehr wichtig
+                                </ng-container>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Status:
+                            </td>
+                            <td>
+                                <ng-container *ngIf="task.state == 0">
+                                    <span id="open">offen</span>
+                                </ng-container>
+                                <ng-container *ngIf="task.state == 1">
+                                    <span id="working">in Bearbeitung</span>
+                                </ng-container>
+                                <ng-container *ngIf="task.state == 2">
+                                    <span id="done">erledigt</span>
+                                </ng-container>
+                            </td>
+                        </tr>
+                    </table>
+                </div><br>
+                <button mat-raised-button color="accent" (click)="changeTask(task.id)">Aufgabe bearbeiten</button>
+                <ng-container *ngIf="task.state != 2">
+                    <button id="delete" mat-raised-button color="warn" (click)="deleteTask(task.id)">Aufgabe
+                        löschen</button><br><br>
+                </ng-container>
+                <ng-container *ngIf="task.state == 2">
+                    <button id="delete" mat-raised-button color="warn" (click)="deleteTask(task.id)" disabled>Aufgabe
+                        löschen</button><br><br>
+                </ng-container>
+            </mat-card>
+            <br>
             <mat-divider></mat-divider>
         </ng-container>
     </ng-container>
