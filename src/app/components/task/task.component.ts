@@ -18,7 +18,7 @@ export class TaskComponent implements OnInit {
   private id: number;
   task$: Observable<Task>;
   isLoading$: Observable<boolean>;
-  public isDone: boolean = false;
+  isDone: boolean = true;
   showTask: Task = {
     id: null,
     name: "",
@@ -42,6 +42,9 @@ export class TaskComponent implements OnInit {
     this.isLoading$ = this.store.select(TodoSelectors.selectIsLoadingTask);
     this.task$.subscribe(value => {
       this.showTask = JSON.parse(JSON.stringify(value));
+      if(this.showTask.state != 2 && this.showTask.state != null) {
+        this.isDone = false;
+      }
     });
   }
 
