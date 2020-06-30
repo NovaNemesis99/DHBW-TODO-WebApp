@@ -60,7 +60,7 @@ export class TaskComponent implements OnInit {
       const dialogRef1 = this.dialog.open(TaskEditComponent, dialogConfig);
       dialogRef1.afterClosed().subscribe(async () => {
         await this.delay(100);
-        this.getTask(this.id)
+        this.getTask(this.id);
       });
     }
   }
