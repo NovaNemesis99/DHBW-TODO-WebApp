@@ -5,6 +5,7 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import * as TodoActions from '../../store/todo.actions';
+import { AppState } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-add-task',
@@ -23,7 +24,7 @@ export class AddTaskComponent implements OnInit {
     list_id: null
   }
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: number, public dialogRef: MatDialogRef<AddTaskComponent>, private _ngZone: NgZone, private store: Store) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: number, public dialogRef: MatDialogRef<AddTaskComponent>, private _ngZone: NgZone, private store: Store<AppState>) { }
 
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
 

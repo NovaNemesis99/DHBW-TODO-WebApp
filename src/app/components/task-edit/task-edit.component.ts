@@ -5,6 +5,7 @@ import * as TodoActions from '../../store/todo.actions';
 import * as TodoSelectors from '../../store/todo.selector';
 import { Observable } from 'rxjs';
 import { Task } from 'src/app/shared/models/task';
+import { AppState } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-task-edit',
@@ -25,7 +26,7 @@ export class TaskEditComponent implements OnInit {
     list_id: null
   };
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: number, private store: Store, public dialogRef: MatDialogRef<TaskEditComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: number, private store: Store<AppState>, public dialogRef: MatDialogRef<TaskEditComponent>) { }
 
   ngOnInit(): void {
     this.store.dispatch(new TodoActions.GetTaskById(this.data));

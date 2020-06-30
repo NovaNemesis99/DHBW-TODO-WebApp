@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Task } from 'src/app/shared/models/task';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { TaskEditComponent } from '../task-edit/task-edit.component';
+import { AppState } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-task',
@@ -29,7 +30,7 @@ export class TaskComponent implements OnInit {
     list_id: null
   };
 
-  constructor(private active: ActivatedRoute, private store: Store, public dialog: MatDialog, private router: Router) { }
+  constructor(private active: ActivatedRoute, private store: Store<AppState>, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.active.fragment.subscribe((fragment: string) => this.getTask(fragment));

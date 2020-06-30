@@ -9,6 +9,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { TaskEditComponent } from '../task-edit/task-edit.component';
 import { Overlay } from '@angular/cdk/overlay';
+import { AppState } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-tasklist-detail',
@@ -28,7 +29,7 @@ export class TasklistDetailComponent implements OnInit {
   newName: String = "";
   reloading: boolean = false;
 
-  constructor(private active: ActivatedRoute, private store: Store, public dialog: MatDialog, private router: Router, private overlay: Overlay) { }
+  constructor(private active: ActivatedRoute, private store: Store<AppState>, public dialog: MatDialog, private router: Router, private overlay: Overlay) { }
 
   ngOnInit(): void {
     this.active.fragment.subscribe((fragment: string) => this.getTasklist(fragment));
