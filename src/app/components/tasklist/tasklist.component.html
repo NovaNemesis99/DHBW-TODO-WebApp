@@ -29,13 +29,16 @@
             <mat-panel-description>
                 <ul>
                     <ng-container *ngFor="let task of tasklist.ownTask">
-                        <li>{{task.name}} | <input id="datepicker" matInput [matDatepicker]="picker" disabled
-                                [value]="task.duedate">
-                            <mat-datepicker #picker></mat-datepicker>
-                            <a routerLink="/task" fragment="{{task.id}}"
-                                matTooltip="Zur Detailansicht navigieren"><span>Details <i
-                                        class="material-icons">arrow_right_alt</i></span></a>
-                        </li><br>
+                        <mat-card>
+                            <li>{{task.name}} | <input class="datepicker" matInput [matDatepicker]="picker" disabled
+                                    [value]="task.duedate">
+                                <mat-datepicker #picker></mat-datepicker>
+                                <a routerLink="/task" fragment="{{task.id}}"
+                                    matTooltip="Zur Detailansicht navigieren"><span>Details <i
+                                            class="material-icons">arrow_right_alt</i></span></a>
+                            </li>
+                        </mat-card>
+                        <br>
                     </ng-container>
                 </ul>
             </mat-panel-description>

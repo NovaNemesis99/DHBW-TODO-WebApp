@@ -76,4 +76,8 @@ export class TaskComponent implements OnInit {
     }
   }
 
+  navigateBack() {
+    this.router.navigate(["/tasklist"]);
+  }
+
 }
