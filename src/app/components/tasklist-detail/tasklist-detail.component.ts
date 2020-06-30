@@ -65,8 +65,9 @@ export class TasklistDetailComponent implements OnInit {
   deleteList() {
     if (window.confirm("Liste wirklich löschen?")) {
       this.store.dispatch(new TodoActions.DeleteList(this.id));
+      this.router.navigate(["/tasklist"]);
     }
-    this.router.navigate(["/tasklist"]);
+    
   }
 
   async changeListName() {
