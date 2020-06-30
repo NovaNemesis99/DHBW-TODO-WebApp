@@ -1,11 +1,11 @@
-import { Component, OnInit, Inject, NgZone } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import * as TodoActions from '../../store/todo.actions';
-import * as TodoSelectors from '../../store/todo.selector';
 import { Observable } from 'rxjs';
 import { Task } from 'src/app/shared/models/task';
 import { AppState } from 'src/app/store/app.state';
+import * as TodoActions from '../../store/todo.actions';
+import * as TodoSelectors from '../../store/todo.selector';
 
 @Component({
   selector: 'app-task-edit',

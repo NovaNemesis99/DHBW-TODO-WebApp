@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import * as TodoActions from '../../store/todo.actions';
-import * as TodoSelectors from '../../store/todo.selector';
 import { Observable } from 'rxjs';
 import { Task } from 'src/app/shared/models/task';
-import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
-import { TaskEditComponent } from '../task-edit/task-edit.component';
 import { AppState } from 'src/app/store/app.state';
+import * as TodoActions from '../../store/todo.actions';
+import * as TodoSelectors from '../../store/todo.selector';
+import { TaskEditComponent } from '../task-edit/task-edit.component';
 
 @Component({
   selector: 'app-task',

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Store, ActionsSubject } from '@ngrx/store';
-import { AppState } from 'src/app/store/app.state';
-import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { ofType } from '@ngrx/effects';
+import { ActionsSubject, Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { AppState } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-root',

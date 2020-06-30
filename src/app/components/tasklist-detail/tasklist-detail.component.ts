@@ -1,15 +1,15 @@
+import { Overlay } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import * as TodoActions from '../../store/todo.actions';
-import * as TodoSelectors from '../../store/todo.selector';
 import { Observable } from 'rxjs';
 import { Tasklist } from 'src/app/shared/models/tasklist';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AppState } from 'src/app/store/app.state';
+import * as TodoActions from '../../store/todo.actions';
+import * as TodoSelectors from '../../store/todo.selector';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { TaskEditComponent } from '../task-edit/task-edit.component';
-import { Overlay } from '@angular/cdk/overlay';
-import { AppState } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-tasklist-detail',
