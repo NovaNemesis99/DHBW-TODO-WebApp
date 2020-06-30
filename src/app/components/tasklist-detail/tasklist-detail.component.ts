@@ -53,7 +53,11 @@ export class TasklistDetailComponent implements OnInit {
 
     if (this.dialog.openDialogs.length == 0) {
       const dialogRef = this.dialog.open(AddTaskComponent, dialogConfig);
-      dialogRef.afterClosed().subscribe(() => this.getTasklist(this.id));
+      dialogRef.afterClosed().subscribe(async () => {
+        await this.delay(100);
+        this.getTasklist(this.id)
+      });
+
     }
   }
 

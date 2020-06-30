@@ -57,8 +57,15 @@ export class TaskComponent implements OnInit {
 
     if (this.dialog.openDialogs.length == 0) {
       const dialogRef1 = this.dialog.open(TaskEditComponent, dialogConfig);
-      dialogRef1.afterClosed().subscribe(() => this.getTask(this.id));
+      dialogRef1.afterClosed().subscribe(async () => {
+        await this.delay(100);
+        this.getTask(this.id)
+      });
     }
+  }
+  
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   deleteTask() {
