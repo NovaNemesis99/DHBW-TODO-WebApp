@@ -5,3 +5,8 @@ mat-form-field {
 #action {
     text-align: end;
 }
+
+span {
+    display: flex;
+    align-items: center;
+}

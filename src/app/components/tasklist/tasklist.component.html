@@ -6,7 +6,7 @@
     <mat-label>Neue Aufgabenliste hinzufügen (Name eingeben)</mat-label>
     <input matInput placeholder="Neue Aufgabenliste" [(ngModel)]="tasklistName">
     <button mat-raised-button matTooltip="Neue Liste hinzufügen" color="primary" type="submit" (click)="addTasklist()"
-        matSuffix><i class="material-icons">add</i></button>
+        matSuffix><i class="material-icons">post_add</i></button>
 </mat-form-field>
 <span id="error" *ngIf="isEmpty">Zum Hinzufügen muss ein Name eingegeben werden!</span>
 <br>
@@ -23,8 +23,9 @@
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <div>{{tasklist.name}}&nbsp;&nbsp;<a routerLink="/specificTasklist" fragment="{{tasklist.id}}"><button
-                            mat-raised-button color="accent" matTooltip="Zur Detailansicht navigieren">Detailansicht <i
-                                class="material-icons">arrow_right_alt</i></button></a></div>
+                            mat-raised-button color="accent"
+                            matTooltip="Zur Detailansicht navigieren"><span>Detailansicht <i
+                                    class="material-icons">arrow_right_alt</i></span></button></a></div>
             </mat-expansion-panel-header>
             <mat-panel-description>
                 <ul>

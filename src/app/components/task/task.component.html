@@ -5,68 +5,69 @@
 </ng-container>
 
 <mat-card *ngIf="showTask.id != 0; else elseBlock;">
-<h1>Aufgabe: {{showTask.name}}</h1>
-<table>
-    <tr>
-        <td>
-            Fällig bis:
-        </td>
-        <td>
-            <input id="datepicker" matInput [matDatepicker]="picker" disabled [value]="showTask.duedate">
-            <mat-datepicker #picker></mat-datepicker>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Beschreibung:&nbsp;
-        </td>
-        <td>
-            {{showTask.description}}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Gewichtung:
-        </td>
-        <td>
-            <ng-container *ngIf="showTask.weight == 1">
-                unwichtig
-            </ng-container>
-            <ng-container *ngIf="showTask.weight == 2">
-                eher unwichtig
-            </ng-container>
-            <ng-container *ngIf="showTask.weight == 3">
-                durchschnittlich
-            </ng-container>
-            <ng-container *ngIf="showTask.weight == 4">
-                wichtig
-            </ng-container>
-            <ng-container *ngIf="showTask.weight == 5">
-                sehr wichtig
-            </ng-container>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Status:
-        </td>
-        <td>
-            <ng-container *ngIf="showTask.state == 0">
-                <span id="open">offen</span>
-            </ng-container>
-            <ng-container *ngIf="showTask.state == 1">
-                <span id="working">in Bearbeitung</span>
-            </ng-container>
-            <ng-container *ngIf="showTask.state == 2">
-                <span id="done">erledigt</span>
-            </ng-container>
-        </td>
-    </tr>
-</table><br>
+    <h1>Aufgabe: {{showTask.name}}</h1>
+    <table>
+        <tr>
+            <td>
+                Fällig bis:
+            </td>
+            <td>
+                <input id="datepicker" matInput [matDatepicker]="picker" disabled [value]="showTask.duedate">
+                <mat-datepicker #picker></mat-datepicker>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Beschreibung:&nbsp;
+            </td>
+            <td>
+                {{showTask.description}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Gewichtung:
+            </td>
+            <td>
+                <ng-container *ngIf="showTask.weight == 1">
+                    unwichtig
+                </ng-container>
+                <ng-container *ngIf="showTask.weight == 2">
+                    eher unwichtig
+                </ng-container>
+                <ng-container *ngIf="showTask.weight == 3">
+                    durchschnittlich
+                </ng-container>
+                <ng-container *ngIf="showTask.weight == 4">
+                    wichtig
+                </ng-container>
+                <ng-container *ngIf="showTask.weight == 5">
+                    sehr wichtig
+                </ng-container>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Status:
+            </td>
+            <td>
+                <ng-container *ngIf="showTask.state == 0">
+                    <span id="open">offen</span>
+                </ng-container>
+                <ng-container *ngIf="showTask.state == 1">
+                    <span id="working">in Bearbeitung</span>
+                </ng-container>
+                <ng-container *ngIf="showTask.state == 2">
+                    <span id="done">erledigt</span>
+                </ng-container>
+            </td>
+        </tr>
+    </table><br>
 
-<button mat-raised-button color="accent" (click)="changeTask(showTask.id)">Aufgabe bearbeiten</button>
-<button mat-raised-button id="delete" color="warn" (click)="deleteTask()" [disabled]="isDone">Aufgabe
-    löschen</button>
+    <button mat-raised-button color="accent" (click)="changeTask(showTask.id)" [disabled]="isDone"><span>Aufgabe bearbeiten&nbsp;<i
+                class="material-icons">edit</i></span></button>
+    <button mat-raised-button id="delete" color="warn" (click)="deleteTask()" [disabled]="isDone"><span>Aufgabe
+            löschen&nbsp;<i class="material-icons">delete</i></span></button>
 </mat-card>
 
 <ng-template #elseBlock>

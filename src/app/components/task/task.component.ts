@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import * as TodoActions from '../../store/todo.actions';
-import * as TodoSelectors from '../../store/todo.selector';
 import { Observable } from 'rxjs';
 import { Task } from 'src/app/shared/models/task';
-import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
-import { TaskEditComponent } from '../task-edit/task-edit.component';
 import { AppState } from 'src/app/store/app.state';
+import * as TodoActions from '../../store/todo.actions';
+import * as TodoSelectors from '../../store/todo.selector';
+import { TaskEditComponent } from '../task-edit/task-edit.component';
 
 @Component({
   selector: 'app-task',
@@ -43,7 +43,7 @@ export class TaskComponent implements OnInit {
     this.isLoading$ = this.store.select(TodoSelectors.selectIsLoadingTask);
     this.task$.subscribe(value => {
       this.showTask = JSON.parse(JSON.stringify(value));
-      if(this.showTask.state != 2 && this.showTask.state != null) {
+      if (this.showTask.state != 2 && this.showTask.state != null) {
         this.isDone = false;
       }
     });
@@ -59,12 +59,15 @@ export class TaskComponent implements OnInit {
     if (this.dialog.openDialogs.length == 0) {
       const dialogRef1 = this.dialog.open(TaskEditComponent, dialogConfig);
       dialogRef1.afterClosed().subscribe(async () => {
-        await this.delay(100);
-        this.getTask(this.id)
-      });
-    }
+        await this.delay(500);
+        this.router.navigateByUrl('/tasklist', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/task'], { fragment: this.id.toString() });
+        });
+      }
+      )
+    };
   }
-  
+
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }

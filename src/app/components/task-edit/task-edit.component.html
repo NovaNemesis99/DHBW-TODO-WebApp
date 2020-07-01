@@ -12,8 +12,8 @@
         </mat-form-field><br>
         <mat-form-field appearance="outline" class="form-group">
             <mat-label>Enddatum (über den Picker rechts auswählen)</mat-label>
-            <input class="form-control" name="duedate" matInput [matDatepicker]="picker" [(ngModel)]="changedTask.duedate"
-                disabled>
+            <input class="form-control" name="duedate" matInput [min]="minDate" [matDatepicker]="picker"
+                [(ngModel)]="changedTask.duedate" disabled>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker disabled="false"></mat-datepicker>
         </mat-form-field><br>
@@ -43,7 +43,8 @@
         </mat-form-field>
         <div id="action">
             <mat-label>* Pflichtfelder</mat-label><br>
-            <button mat-raised-button color="accent" [disabled]="!changeForm.form.valid">Ändern</button>
+            <button mat-raised-button color="accent" [disabled]="!changeForm.form.valid"><span>Ändern&nbsp;<i
+                        class="material-icons">save</i></span></button>
         </div>
     </form>
 </div>

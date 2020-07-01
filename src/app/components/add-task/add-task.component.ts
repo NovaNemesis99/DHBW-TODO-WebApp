@@ -1,11 +1,11 @@
-import { Component, OnInit, Inject, NgZone, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Task } from 'src/app/shared/models/task';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { take } from 'rxjs/operators';
+import { Component, Inject, NgZone, OnInit, ViewChild } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import * as TodoActions from '../../store/todo.actions';
+import { take } from 'rxjs/operators';
+import { Task } from 'src/app/shared/models/task';
 import { AppState } from 'src/app/store/app.state';
+import * as TodoActions from '../../store/todo.actions';
 
 @Component({
   selector: 'app-add-task',
@@ -24,7 +24,14 @@ export class AddTaskComponent implements OnInit {
     list_id: null
   }
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: number, public dialogRef: MatDialogRef<AddTaskComponent>, private _ngZone: NgZone, private store: Store<AppState>) { }
+  minDate: Date;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: number, public dialogRef: MatDialogRef<AddTaskComponent>, private _ngZone: NgZone, private store: Store<AppState>) {
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+    const currentDay = new Date().getDate();
+    this.minDate = new Date(currentYear, currentMonth, currentDay);
+  }
 
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
 

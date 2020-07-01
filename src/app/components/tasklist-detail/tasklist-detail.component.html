@@ -4,6 +4,12 @@
     </ng-container>
 </ng-container>
 
+<ng-container *ngIf="reloading">
+    <div id="loading">
+        <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+    </div>
+</ng-container>
+
 <button id="change" mat-raised-button color="accent" matTooltip="Änderungsoptionen ein-/ausblenden"
     (click)="changeName = !changeName"><span>Listenname
         ändern&nbsp;&nbsp;<ng-container *ngIf="!changeName; else notVisible"><i class="material-icons">visibility</i>
@@ -14,14 +20,8 @@
             <mat-label>Neuen Namen eingeben:</mat-label>
             <input matInput [(ngModel)]="newName" placeholder="Neuer Name">
             <button mat-raised-button color="primary" (click)="changeListName()" matTooltip="Namen ändern" matSuffix><i
-                    class="material-icons">add</i></button>
+                    class="material-icons">save</i></button>
         </mat-form-field>
-    </div>
-</ng-container>
-
-<ng-container *ngIf="reloading">
-    <div id="loading">
-        <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
     </div>
 </ng-container>
 
@@ -91,14 +91,18 @@
                         </tr>
                     </table>
                 </div><br>
-                <button mat-raised-button color="accent" (click)="changeTask(task.id)">Aufgabe bearbeiten</button>
                 <ng-container *ngIf="task.state != 2">
-                    <button id="delete" mat-raised-button color="warn" (click)="deleteTask(task.id)">Aufgabe
-                        löschen</button><br><br>
+                    <button mat-raised-button color="accent" (click)="changeTask(task.id)"><span>Aufgabe bearbeiten&nbsp;<i
+                        class="material-icons">edit</i></span></button>
+                    <button id="delete" mat-raised-button color="warn" (click)="deleteTask(task.id)"><span>Aufgabe
+                            löschen&nbsp;<i class="material-icons">delete</i></span></button><br><br>
                 </ng-container>
                 <ng-container *ngIf="task.state == 2">
-                    <button id="delete" mat-raised-button color="warn" (click)="deleteTask(task.id)" disabled>Aufgabe
-                        löschen</button><br><br>
+                    <button mat-raised-button color="accent" (click)="changeTask(task.id)" disabled><span>Aufgabe bearbeiten&nbsp;<i
+                        class="material-icons">edit</i></span></button>                    
+                    <button id="delete" mat-raised-button color="warn" (click)="deleteTask(task.id)"
+                        disabled><span>Aufgabe
+                            löschen&nbsp;<i class="material-icons">delete</i></span></button><br><br>
                 </ng-container>
             </mat-card>
             <br>
@@ -110,7 +114,8 @@
 <div id="controls">
     <button mat-fab color="primary" (click)="openDialog()" matTooltip="Aufgabe hinzufügen"><i
             class="material-icons">add</i></button>
-    <button id="delete" mat-raised-button color="warn" (click)="deleteList()">Liste löschen</button>
+    <button id="delete" mat-raised-button color="warn" (click)="deleteList()"><span>Liste löschen&nbsp;<i
+                class="material-icons">delete</i></span></button>
 </div>
 
 <ng-template #notVisible>

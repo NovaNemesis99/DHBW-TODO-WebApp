@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import * as TodoActions from '../../store/todo.actions';
 import { Observable } from 'rxjs';
 import { Tasklist } from 'src/app/shared/models/tasklist';
 import { AppState } from 'src/app/store/app.state';
+import * as TodoActions from '../../store/todo.actions';
 import * as TodoSelectors from '../../store/todo.selector';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tasklist',
