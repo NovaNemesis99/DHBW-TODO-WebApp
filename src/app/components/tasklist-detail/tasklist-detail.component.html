@@ -91,13 +91,15 @@
                         </tr>
                     </table>
                 </div><br>
-                <button mat-raised-button color="accent" (click)="changeTask(task.id)"><span>Aufgabe bearbeiten&nbsp;<i
-                            class="material-icons">edit</i></span></button>
                 <ng-container *ngIf="task.state != 2">
+                    <button mat-raised-button color="accent" (click)="changeTask(task.id)"><span>Aufgabe bearbeiten&nbsp;<i
+                        class="material-icons">edit</i></span></button>
                     <button id="delete" mat-raised-button color="warn" (click)="deleteTask(task.id)"><span>Aufgabe
                             löschen&nbsp;<i class="material-icons">delete</i></span></button><br><br>
                 </ng-container>
                 <ng-container *ngIf="task.state == 2">
+                    <button mat-raised-button color="accent" (click)="changeTask(task.id)" disabled><span>Aufgabe bearbeiten&nbsp;<i
+                        class="material-icons">edit</i></span></button>                    
                     <button id="delete" mat-raised-button color="warn" (click)="deleteTask(task.id)"
                         disabled><span>Aufgabe
                             löschen&nbsp;<i class="material-icons">delete</i></span></button><br><br>
