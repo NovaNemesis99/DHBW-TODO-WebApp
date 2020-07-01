@@ -26,7 +26,14 @@ export class TaskEditComponent implements OnInit {
     list_id: null
   };
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: number, private store: Store<AppState>, public dialogRef: MatDialogRef<TaskEditComponent>) { }
+  minDate: Date;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: number, private store: Store<AppState>, public dialogRef: MatDialogRef<TaskEditComponent>) { 
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+    const currentDay = new Date().getDate();
+    this.minDate = new Date(currentYear, currentMonth, currentDay);
+  }
 
   ngOnInit(): void {
     this.store.dispatch(new TodoActions.GetTaskById(this.data));

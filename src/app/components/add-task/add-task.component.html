@@ -12,7 +12,7 @@
         </mat-form-field><br>
         <mat-form-field appearance="outline" class="form-group">
             <mat-label>Enddatum (über den Picker rechts auswählen)</mat-label>
-            <input class="form-control" name="duedate" matInput [matDatepicker]="picker" [(ngModel)]="addTask.duedate"
+            <input class="form-control" name="duedate" matInput [min]="minDate" [matDatepicker]="picker" [(ngModel)]="addTask.duedate"
                 disabled>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker disabled="false"></mat-datepicker>

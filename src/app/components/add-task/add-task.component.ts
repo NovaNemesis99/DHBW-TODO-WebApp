@@ -24,7 +24,14 @@ export class AddTaskComponent implements OnInit {
     list_id: null
   }
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: number, public dialogRef: MatDialogRef<AddTaskComponent>, private _ngZone: NgZone, private store: Store<AppState>) { }
+  minDate: Date;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: number, public dialogRef: MatDialogRef<AddTaskComponent>, private _ngZone: NgZone, private store: Store<AppState>) {
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+    const currentDay = new Date().getDate();
+    this.minDate = new Date(currentYear, currentMonth, currentDay);
+  }
 
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
 
